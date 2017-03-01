@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:SyousetsukaGetter.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="500" Width="700"
         ShowInTaskbar="True"
         Topmost="False"
         WindowStartupLocation="CenterScreen"
@@ -68,13 +68,22 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <ListBox Grid.Column="0">
-                    <ListBoxItem Content="test" />
-                    <ListBoxItem Content="test" />
-                    <ListBoxItem Content="test" />
-                    <ListBoxItem Content="test" />
-                    <ListBoxItem Content="test" />
-                </ListBox>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Width="25" Height=" 25" Style="{DynamicResource PlusBT}" />
+                    </StackPanel>
+                    <ListBox Grid.Row="1">
+                        <ListBoxItem Content="test" />
+                        <ListBoxItem Content="test" />
+                        <ListBoxItem Content="test" />
+                        <ListBoxItem Content="test" />
+                        <ListBoxItem Content="test" />
+                    </ListBox>
+                </Grid>
 
             </Grid>
         </Grid>

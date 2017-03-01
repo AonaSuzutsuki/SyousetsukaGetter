@@ -451,7 +451,7 @@
     <FontFamily x:Key="FontName">Meiryo</FontFamily>
     <FontFamily x:Key="MenuFontName">Meiryo</FontFamily>
     <sys:Double x:Key="BaseFontSize">12</sys:Double>
-    <SolidColorBrush x:Key="BorderColor" Color="#999" />
+    <SolidColorBrush x:Key="BorderColor" Color="#555" />
     <SolidColorBrush x:Key="BorderWhiteColor" Color="#fff" />
     <SolidColorBrush x:Key="AroundBorderColor" Color="#4090ff" />
     <SolidColorBrush x:Key="AroundBorderColor2" Color="#ff6b00" />
@@ -1010,6 +1010,38 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    
+    <!-- Plus Button -->
+    <Style x:Key="PlusBT" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                        <Grid Width="25" Height="25">
+                            <Rectangle Height="2" Margin="0" Width="13" Fill="White"/>
+                            <Rectangle Height="13" Margin="0" Width="2" Fill="White"/>
+                        </Grid>
+                        <ContentPresenter Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.3" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
 
     <!-- ContextMenu -->
     <!--<Style TargetType="{x:Type ContextMenu}">
@@ -1083,10 +1115,11 @@
         <Setter Property="MinHeight" Value="95" />
         <Setter Property="Foreground" Value="#fff" />
         <Setter Property="Background" Value="#222" />
+        <Setter Property="BorderThickness" Value="0,0,5,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBox">
-                    <Border Name="Border" BorderBrush="{StaticResource BorderColor}" Background="{TemplateBinding Background}" BorderThickness="1" CornerRadius="0">
+                    <Border Name="Border" BorderBrush="{StaticResource BorderColor}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
                         <ScrollViewer Margin="0" Focusable="false">
                             <StackPanel Margin="2" IsItemsHost="True" />
                         </ScrollViewer>
@@ -1106,18 +1139,23 @@
     </Style>
     <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="10,0,0,0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border
-                        BorderBrush="Transparent"
-                        BorderThickness="0"
+                    <Grid>
+                        <Border
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}"
                         Padding="15">
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    </Border>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
+                        
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1127,9 +1165,10 @@
                     <Condition Property="IsSelected" Value="true" />
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="#4090ff" />
+                <Setter Property="BorderBrush" Value="#FF2B4A76" />
             </MultiTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#333"/>
+                <Setter Property="Background" Value="#444"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -81,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
+    <Compile Include="Model\JsonLoader.cs" />
     <Compile Include="View\InteractiveCommand.cs" />
     <Compile Include="Localize\ResourceService.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
