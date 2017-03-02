@@ -12,10 +12,10 @@ namespace SyousetsukaGetter.ViewModel
         {
             this.view = view;
 
-            imageMouseDown = new RelayCommand<MouseEventArgs>(Image_MouseDown);
-            mainWindowMinimumBTClick = new RelayCommand(MainWindowMinimumBT_Click);
-            mainWindowMaximumBTClick = new RelayCommand(MainWindowMaximumBT_Click);
-            mainWindowCloseBTClick = new RelayCommand(MainWindowCloseBT_Click);
+            ImageMouseDown = new RelayCommand<MouseEventArgs>(Image_MouseDown);
+            MainWindowMinimumBTClick = new RelayCommand(MainWindowMinimumBT_Click);
+            MainWindowMaximumBTClick = new RelayCommand(MainWindowMaximumBT_Click);
+            MainWindowCloseBTClick = new RelayCommand(MainWindowCloseBT_Click);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,29 +26,29 @@ namespace SyousetsukaGetter.ViewModel
 
         #region StaticMember
         private static readonly Thickness zeroMargin = new Thickness(0);
-        private static readonly Thickness fiveMargin = new Thickness(5);
+        private static readonly Thickness maximumMargin = new Thickness(7);
         #endregion
 
         #region EventProperties
-        protected ICommand imageMouseDown = null;
         public ICommand ImageMouseDown
         {
-            get { return imageMouseDown; }
+            private set;
+            get;
         }
-        protected ICommand mainWindowMinimumBTClick = null;
         public ICommand MainWindowMinimumBTClick
         {
-            get { return mainWindowMinimumBTClick; }
+            private set;
+            get;
         }
-        protected ICommand mainWindowMaximumBTClick = null;
         public ICommand MainWindowMaximumBTClick
         {
-            get { return mainWindowMaximumBTClick; }
+            private set;
+            get;
         }
-        protected ICommand mainWindowCloseBTClick = null;
         public ICommand MainWindowCloseBTClick
         {
-            get { return mainWindowCloseBTClick; }
+            private set;
+            get;
         }
         #endregion
 
@@ -117,7 +117,7 @@ namespace SyousetsukaGetter.ViewModel
             {
                 view.WindowState = WindowState.Maximized;
                 MainWindowMaximumBTContent = "2";
-                MainWindowMargin = fiveMargin;
+                MainWindowMargin = maximumMargin;
             }
             else
             {
