@@ -123,7 +123,7 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="GlyphBrush" Color="#bbb" />
     <SolidColorBrush x:Key="SelectedGlyphBrush" Color="#bbb" />
-    <SolidColorBrush x:Key="MainBackgroundBrush" Color="#444" />
+    <SolidColorBrush x:Key="MainBackgroundBrush" Color="Transparent" />
     <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -185,7 +185,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border Margin="0"
-          CornerRadius="0"
+          CornerRadius="5"
           Background="{Binding Foreground,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Thumb}}"
           BorderBrush="{Binding Foreground,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Thumb}}"
           BorderThickness="1" />
@@ -297,8 +297,8 @@
       Content="M 0 0 L 4 4 L 0 8 Z"/>
         </Grid>
     </ControlTemplate>
-    <sys:Double x:Key="ScrollBarWidth">15</sys:Double>
-    <sys:Double x:Key="ScrollBarHeight">15</sys:Double>
+    <sys:Double x:Key="ScrollBarWidth">12</sys:Double>
+    <sys:Double x:Key="ScrollBarHeight">12</sys:Double>
     <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -451,7 +451,8 @@
     <FontFamily x:Key="FontName">Meiryo</FontFamily>
     <FontFamily x:Key="MenuFontName">Meiryo</FontFamily>
     <sys:Double x:Key="BaseFontSize">12</sys:Double>
-    <SolidColorBrush x:Key="BorderColor" Color="#555" />
+    <SolidColorBrush x:Key="BorderColor" Color="#999" />
+    <SolidColorBrush x:Key="ListBorderColor" Color="#555" />
     <SolidColorBrush x:Key="BorderWhiteColor" Color="#fff" />
     <SolidColorBrush x:Key="AroundBorderColor" Color="#4090ff" />
     <SolidColorBrush x:Key="AroundBorderColor2" Color="#ff6b00" />
@@ -1115,12 +1116,12 @@
         <Setter Property="MinHeight" Value="95" />
         <Setter Property="Foreground" Value="#fff" />
         <Setter Property="Background" Value="#222" />
-        <Setter Property="BorderThickness" Value="0,0,5,0" />
+        <Setter Property="BorderThickness" Value="0,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBox">
-                    <Border Name="Border" BorderBrush="{StaticResource BorderColor}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
-                        <ScrollViewer Margin="0" Focusable="false">
+                    <Border Name="Border" BorderBrush="{StaticResource ListBorderColor}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
+                        <ScrollViewer Margin="0,0,0,0" Focusable="false">
                             <StackPanel Margin="2" IsItemsHost="True" />
                         </ScrollViewer>
                     </Border>

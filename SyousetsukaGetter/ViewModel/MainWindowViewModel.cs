@@ -12,10 +12,20 @@ namespace SyousetsukaGetter.ViewModel
     {
         public MainWindowViewModel(Window view) : base(view)
         {
+            initialize();
         }
 
         private void initialize()
         {
+            AddBTClick = new RelayCommand(AddBT_Click);
+        }
+
+        public ICommand AddBTClick { private set; get; }
+
+        public void AddBT_Click()
+        {
+            var searchWindow = new View.SearchWindow();
+            searchWindow.ShowDialog();
         }
     }
 }

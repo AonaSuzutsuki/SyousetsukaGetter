@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SyousetsukaGetter.Elements"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Rectangle Height="13" Margin="0" Width="200" Fill="White"/>
-        <Rectangle Height="200" Margin="0" Width="13" Fill="White"/>
+             d:DesignHeight="300" d:DesignWidth="300" Width="25" Height="25">
+    <Grid Width="25" Height="25">
+        <Rectangle Height="3" Margin="0" Width="20" Fill="White"/>
+        <Rectangle Height="20" Margin="0" Width="3" Fill="White"/>
 
     </Grid>
 </UserControl>
