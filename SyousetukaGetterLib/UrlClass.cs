@@ -8,13 +8,18 @@ namespace SyousetukaGetterLib
 {
     class UrlClass
     {
-        public string Url
-        {
-            private set;
-            get;
-        }
         private const string defaultUrl = "http://api.syosetu.com/novelapi/api/?out=json";
         private string tmpUrl;
+
+        private int lim = 1;
+
+        public string Url
+        {
+            get
+            {
+                return defaultUrl + "&lim=" + lim;
+            }
+        }
 
         public UrlClass()
         {
@@ -33,17 +38,10 @@ namespace SyousetukaGetterLib
          * (最低1,最大500)
          * 
          * */
-        public void LimSetter(int num, bool initialization = false)
+        public void SetLim(int num)
         {
             LimRange(num);
-            if (initialization)
-            {
-                tmpUrl = defaultUrl + "&lim=" + num;
-            }
-            else
-            {
-                tmpUrl = tmpUrl + "&lim" + num;
-            }
+            lim = num;
         }
         /*
          * limの範囲が正しいかどうかの判定
