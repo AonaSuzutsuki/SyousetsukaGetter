@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace SyousetsukaGetter.ViewModel
 {
@@ -22,19 +23,30 @@ namespace SyousetsukaGetter.ViewModel
             public string Name { set; get; }
         }
 
+
+        #region
+        public ObservableCollection<SearchListDataInfo> SearchListData { set; get; }
+        public ObservableCollection<GenreInfo> GenreItems { set; get; }
+        public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
+        #endregion
+
+        #region EventProperties
+        public ICommand PlusBTClick { private set; get; }
+        #endregion
+
         public SearchWindowViewModel(Window view) : base(view)
         {
             SearchListData = new ObservableCollection<SearchListDataInfo>()
             {
                 new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "0", Name = "Test" }
+                new SearchListDataInfo() { ID = "1", Name = "Test" },
+                new SearchListDataInfo() { ID = "2", Name = "Test" },
+                new SearchListDataInfo() { ID = "3", Name = "Test" },
+                new SearchListDataInfo() { ID = "4", Name = "Test" },
+                new SearchListDataInfo() { ID = "5", Name = "Test" },
+                new SearchListDataInfo() { ID = "6", Name = "Test" },
+                new SearchListDataInfo() { ID = "7", Name = "Test" },
+                new SearchListDataInfo() { ID = "8", Name = "Test" }
             };
 
             GenreItems = new ObservableCollection<GenreInfo>()
@@ -71,11 +83,13 @@ namespace SyousetsukaGetter.ViewModel
                 new GenreInfo() { ID = "9999", Name = "その他〔その他〕" },
                 new GenreInfo() { ID = "9801", Name = "ノンジャンル〔ノンジャンル〕" },
             };
+
+            PlusBTClick = new RelayCommand<string>(PlusBT_Click);
         }
 
-        public ObservableCollection<SearchListDataInfo> SearchListData { set; get; }
-
-        public ObservableCollection<GenreInfo> GenreItems { set; get; }
-        public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
+        public void PlusBT_Click(string e)
+        {
+            Console.WriteLine("ID : " + e);
+        }
     }
 }
