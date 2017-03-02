@@ -6,32 +6,38 @@ using System.Threading.Tasks;
 
 namespace SyousetukaGetterLib
 {
-    class UrlClass
+    class UrlManager
     {
         private const string defaultUrl = "http://api.syosetu.com/novelapi/api/?out=json";
-        private string tmpUrl;
-
-        private int lim = 1;
+        private int limNumber = 20;
+        private string lim;
+        private int stNumber = 1;
+        private string st;
+        private string order = "";
 
         public string Url
         {
             get
             {
-                return defaultUrl + "&lim=" + lim;
+                return defaultUrl + lim + st + order;
             }
         }
 
-        public UrlClass()
+        public enum Order
         {
-            tmpUrl = defaultUrl;
-        }
-        /*
-         * コンストラクタ(url指定)
-         * 
-         * */
-        public UrlClass(string url)
-        {
-            tmpUrl = defaultUrl + url;
+            basic, //新着順
+            favnovelcnt, //ブックマーク数の多い順
+            reviewcnt, //レビュー数の多い順
+            hyoka, //総合評価の高い順
+            hyokaasc, //総合評価の低い順
+            impressioncnt, //感想の多い順
+            hyokacnt, //評価者数の多い順
+            hyokacntasc, //評価者数の少ない順
+            weekly, //週間ユニークユーザの多い順
+            lengthdesc, //小説本文の文字数が多い順
+            lengthasc, //小説本文の文字数が少ない順
+            ncodedesc, //Nコードが新しい順
+            old, //古い順
         }
         /*
          * 出力数を変更する。
@@ -40,8 +46,9 @@ namespace SyousetukaGetterLib
          * */
         public void SetLim(int num)
         {
-            LimRange(num);
-            lim = num;
+            num = LimRange(num);
+            limNumber = num;
+            lim = "&lim=" + limNumber;
         }
         /*
          * limの範囲が正しいかどうかの判定
@@ -67,17 +74,11 @@ namespace SyousetukaGetterLib
          * (1から2000)
          * 
          * */
-        public void StSetter(int num, bool initialization = false)
+        public void StSetter(int num)
         {
-            StRange(num);
-            if (initialization)
-            {
-                tmpUrl = defaultUrl + "&st=" + num;
-            }
-            else
-            {
-                tmpUrl = tmpUrl + "&st" + num;
-            }
+            num = StRange(num);
+            stNumber = num;
+            st = "&st=" + stNumber;
         }
         /*
          * stの範囲判定
@@ -102,16 +103,18 @@ namespace SyousetukaGetterLib
          * 出力順序指定
          * 
          * */
-        public void Order(string order, bool initialization = false)
+        public void OrderSetter(Order order)
         {
-            if (initialization)
+            switch (order)
             {
-                tmpUrl = defaultUrl + "&order=" + order;
+                case Order.basic:
+                    this.order = "";
+                    break;
+                default:
+                    this.order = "&order" + order;
+                    break;
             }
-            else
-            {
-               tmpUrl = tmpUrl + "&order=" + order;
-            }
+            return;
         }
 
 
