@@ -9,8 +9,10 @@ namespace SyousetukaGetterLib
     public class MainClass
     {
         static void Main(string[] args) {
-            var jsonLoader = new JsonLoader("test.txt", true);
-            Console.WriteLine(jsonLoader.GetValue(1, "ncode"));
+            string url = "http://api.syosetu.com/novelapi/api/?out=json";
+            var jsonLoader = new JsonLoader(url);
+            string tmp = jsonLoader.GetValue(2, "title");
+            Console.WriteLine(tmp);
             Console.ReadLine();
         }
     }
