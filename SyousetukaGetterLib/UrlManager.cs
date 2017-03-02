@@ -74,7 +74,7 @@ namespace SyousetukaGetterLib
          * (1から2000)
          * 
          * */
-        public void StSetter(int num)
+        public void SetSt(int num)
         {
             num = StRange(num);
             stNumber = num;
@@ -103,7 +103,7 @@ namespace SyousetukaGetterLib
          * 出力順序指定
          * 
          * */
-        public void OrderSetter(Order order)
+        public void SetOrder(Order order)
         {
             switch (order)
             {
