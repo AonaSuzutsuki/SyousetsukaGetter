@@ -1,0 +1,27 @@
+﻿//string text = "[{\"allcount\":0}]".Replace("[", "{");
+//text = text.Replace("]", "}");
+//var json = Codeplex.Data.DynamicJson.Parse(text);
+//var outJson = json.allcount;
+//Console.WriteLine("");
+
+string url = "test2.txt";
+
+using (var rdr = XmlReader.Create(url))
+{
+    SyndicationFeed feed = SyndicationFeed.Load(rdr);
+
+    Console.WriteLine("title:" + feed.Title.Text);
+    Console.WriteLine("author:" + feed.Authors[0].Name);
+    Console.WriteLine("description:" + feed.Description.Text);
+    Console.WriteLine("--- items ---");
+
+    foreach (SyndicationItem item in feed.Items)
+    {
+        Console.WriteLine("item Title:" + item.Title.Text);
+        Console.WriteLine("description:" + item.Summary.Text);
+        Console.WriteLine("updated:" + item.LastUpdatedTime.ToString());
+        Console.WriteLine("summery:" + item.Summary.Text);
+        Console.WriteLine("link:" + (item.Links.Count > 0
+                        ? item.Links[0].Uri.AbsolutePath : ""));
+    }
+}
