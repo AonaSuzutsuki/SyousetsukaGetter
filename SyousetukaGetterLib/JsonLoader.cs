@@ -15,7 +15,7 @@ namespace SyousetukaGetterLib
 {
     public class JsonLoader
     {
-        public List<Dictionary<string, string>> nodes { private set; get; } = new List<Dictionary<string, string>>();
+        public List<Dictionary<string, string>> Nodes { private set; get; } = new List<Dictionary<string, string>>();
 
         public JsonLoader(string url, bool localFile = false)
         {
@@ -35,7 +35,7 @@ namespace SyousetukaGetterLib
                 json = Encoding.UTF8.GetString(data);
             }
 
-            json = DecodeEncodedNonAsciiCharacters(json);
+            json = decodeEncodedNonAsciiCharacters(json);
 
             decode(json);
         }
@@ -54,7 +54,7 @@ namespace SyousetukaGetterLib
             {
                 var dic = new Dictionary<string, string>();
                 handleNode(node, dic);
-                nodes.Add(dic);
+                Nodes.Add(dic);
             }
         }
 
@@ -75,7 +75,7 @@ namespace SyousetukaGetterLib
                 dic.Add(name, value);
             }
         }
-        private string DecodeEncodedNonAsciiCharacters(string value)
+        private string decodeEncodedNonAsciiCharacters(string value)
         {
             return Regex.Replace(value, @"\\u(?<Value>[a-zA-Z0-9]{4})", m => {
                     return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString();
@@ -84,7 +84,7 @@ namespace SyousetukaGetterLib
 
         public string GetValue(int index, string key)
         {
-            var dic = nodes[index];
+            var dic = Nodes[index];
             foreach (KeyValuePair<string, string> pair in dic)
             {
                 if (pair.Key.Equals(key)) return pair.Value;
@@ -95,7 +95,7 @@ namespace SyousetukaGetterLib
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (Dictionary<string, string> dic in nodes)
+            foreach (Dictionary<string, string> dic in Nodes)
             {
                 foreach (KeyValuePair<string, string> pair in dic)
                 {
