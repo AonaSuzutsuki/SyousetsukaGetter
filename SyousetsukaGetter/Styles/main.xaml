@@ -95,7 +95,7 @@
     <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Gray" />
     <SolidColorBrush x:Key="SelectedForegroundBrush" Color="White" />
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
-    <SolidColorBrush x:Key="NormalBrush" Color="#666" />
+    <SolidColorBrush x:Key="NormalBrush" Color="Transparent" />
     <SolidColorBrush x:Key="SelectedNormalBrush" Color="#777" />
     <SolidColorBrush x:Key="NormalBorderBrush" Color="#666" />
     <SolidColorBrush x:Key="VerticalBackground" Color="#666" />
@@ -134,7 +134,7 @@
                     <Border
           Name="Border"
           Margin="1"
-          CornerRadius="0"
+          CornerRadius="5"
           Background="{StaticResource NormalBrush}"
           BorderBrush="{StaticResource NormalBorderBrush}"
           BorderThickness="0">
@@ -157,6 +157,9 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground"
                                 Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

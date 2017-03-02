@@ -77,22 +77,14 @@
                 </StackPanel>
 
                 <Grid Grid.Column="1">
-                    <ListBox>
+                    <ListBox ItemsSource="{Binding SearchListData}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
 
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
-                        <ListBoxItem Content="test" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
                 

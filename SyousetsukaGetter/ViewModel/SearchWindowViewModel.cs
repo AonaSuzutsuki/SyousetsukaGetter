@@ -9,10 +9,11 @@ namespace SyousetsukaGetter.ViewModel
 {
     public class SearchWindowViewModel : ViewModelBase
     {
+
         public SearchWindowViewModel(Window view) : base(view)
         {
         }
 
-
+        
     }
 }
