@@ -9,9 +9,8 @@ namespace SyousetukaGetterLib
     public class MainClass
     {
         static void Main(string[] args) {
-            var test = new Linechang();
-           
-            Console.WriteLine(test.setterJson());
+            var jsonLoader = new JsonLoader("test.txt", true);
+            Console.WriteLine(jsonLoader.GetValue(1, "ncode"));
             Console.ReadLine();
         }
     }

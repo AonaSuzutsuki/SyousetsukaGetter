@@ -22,9 +22,10 @@ namespace SyousetukaGetterLib
             string json;
             if (localFile)
             {
-                StreamReader sr = new StreamReader("test.txt");
-                json = sr.ReadToEnd();
-                sr.Dispose();
+                using (StreamReader sr = new StreamReader("test.txt"))
+                {
+                    json = sr.ReadToEnd();
+                }
             }
             else
             {
@@ -79,6 +80,16 @@ namespace SyousetukaGetterLib
             return Regex.Replace(value, @"\\u(?<Value>[a-zA-Z0-9]{4})", m => {
                     return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString();
                 });
+        }
+
+        public string GetValue(int index, string key)
+        {
+            var dic = nodes[index];
+            foreach (KeyValuePair<string, string> pair in dic)
+            {
+                if (pair.Key.Equals(key)) return pair.Value;
+            }
+            return null;
         }
 
         public override string ToString()
