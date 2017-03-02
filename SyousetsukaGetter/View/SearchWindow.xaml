@@ -65,24 +65,67 @@
 
             <Grid Margin="10,55,10,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
                     <StackPanel>
-                        <Label Content="タイトル" />
+                        <Label Content="検索単語" />
                         <TextBox />
                     </StackPanel>
+                    <StackPanel>
+                        <CheckBox Content="タイトル" />
+                        <CheckBox Content="あらすじ" />
+                        <CheckBox Content="キーワード" />
+                        <CheckBox Content="作者名" />
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <Label Content="ジャンル" />
+                            <ComboBox ItemsSource="{Binding GenreItems}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding Name}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <Label Content="第二ジャンル" />
+                            <ComboBox ItemsSource="{Binding SecondGenreItems}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding Name}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
 
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1" Margin="10,0,0,0">
                     <ListBox ItemsSource="{Binding SearchListData}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock>
-
-                                </TextBlock>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <Run Text="{Binding ID}" />
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <Run Text="{Binding Name}" />
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
