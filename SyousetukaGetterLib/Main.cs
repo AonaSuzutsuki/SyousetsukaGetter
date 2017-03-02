@@ -9,8 +9,8 @@ namespace SyousetukaGetterLib
     public class MainClass
     {
         static void Main(string[] args) {
-            string url = "http://api.syosetu.com/novelapi/api/?out=json";
-            var jsonLoader = new JsonLoader(url);
+            var url = new UrlManager();
+            var jsonLoader = new JsonLoader(url.Url);
             string tmp = jsonLoader.GetValue(2, "title");
             Console.WriteLine(tmp);
             Console.ReadLine();
