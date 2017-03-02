@@ -1158,7 +1158,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}"
                         Padding="15">
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Top" />
                         </Border>
                         
                     </Grid>
