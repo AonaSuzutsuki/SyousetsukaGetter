@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace SyousetsukaGetter.ViewModel
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : NotifyBase, INotifyPropertyChanged
     {
         protected Window view;
         public ViewModelBase(Window view)
@@ -18,11 +18,6 @@ namespace SyousetsukaGetter.ViewModel
             MainWindowCloseBTClick = new RelayCommand(MainWindowCloseBT_Click);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(object sender, [CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(propertyName));
-        }
 
         #region StaticMember
         private static readonly Thickness zeroMargin = new Thickness(0);

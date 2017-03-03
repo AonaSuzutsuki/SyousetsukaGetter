@@ -68,10 +68,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Elements\Minus.xaml.cs">
+      <DependentUpon>Minus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ListClassBase.cs" />
     <Compile Include="ViewModel\SearchWindowViewModel.cs" />
     <Compile Include="View\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Elements\Minus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Elements\Plus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

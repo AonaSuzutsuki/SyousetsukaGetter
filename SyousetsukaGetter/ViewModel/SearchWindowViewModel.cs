@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,10 +13,37 @@ namespace SyousetsukaGetter.ViewModel
 {
     public class SearchWindowViewModel : ViewModelBase
     {
-        public class SearchListDataInfo
+        public class SearchListDataInfo : NotifyBase
         {
-            public string ID { set; get; }
+            public int ID { set; get; }
+            public string NID { set; get; }
             public string Name { set; get; }
+            private Visibility plusBTVisibility = Visibility.Visible;
+            public Visibility PlusBTVisibility
+            {
+                set
+                {
+                    plusBTVisibility = value;
+                    OnPropertyChanged(this);
+                }
+                get
+                {
+                    return plusBTVisibility;
+                }
+            }
+            private Visibility minusBTVisibility = Visibility.Hidden;
+            public Visibility MinusBTVisibility
+            {
+                set
+                {
+                    minusBTVisibility = value;
+                    OnPropertyChanged(this);
+                }
+                get
+                {
+                    return minusBTVisibility;
+                }
+            }
         }
 
         public class GenreInfo
@@ -23,8 +52,9 @@ namespace SyousetsukaGetter.ViewModel
             public string Name { set; get; }
         }
 
+        Model.SearchWindowModel model = new Model.SearchWindowModel(this);
 
-        #region
+        #region Properties
         public ObservableCollection<SearchListDataInfo> SearchListData { set; get; }
         public ObservableCollection<GenreInfo> GenreItems { set; get; }
         public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
@@ -38,15 +68,15 @@ namespace SyousetsukaGetter.ViewModel
         {
             SearchListData = new ObservableCollection<SearchListDataInfo>()
             {
-                new SearchListDataInfo() { ID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = "1", Name = "Test" },
-                new SearchListDataInfo() { ID = "2", Name = "Test" },
-                new SearchListDataInfo() { ID = "3", Name = "Test" },
-                new SearchListDataInfo() { ID = "4", Name = "Test" },
-                new SearchListDataInfo() { ID = "5", Name = "Test" },
-                new SearchListDataInfo() { ID = "6", Name = "Test" },
-                new SearchListDataInfo() { ID = "7", Name = "Test" },
-                new SearchListDataInfo() { ID = "8", Name = "Test" }
+                new SearchListDataInfo() { ID = 0, NID = "0", Name = "Test" },
+                new SearchListDataInfo() { ID = 1, NID = "1", Name = "Test" },
+                new SearchListDataInfo() { ID = 2, NID = "2", Name = "Test" },
+                new SearchListDataInfo() { ID = 3, NID = "3", Name = "Test" },
+                new SearchListDataInfo() { ID = 4, NID = "4", Name = "Test" },
+                new SearchListDataInfo() { ID = 5, NID = "5", Name = "Test" },
+                new SearchListDataInfo() { ID = 6, NID = "6", Name = "Test" },
+                new SearchListDataInfo() { ID = 7, NID = "7", Name = "Test" },
+                new SearchListDataInfo() { ID = 8, NID = "8", Name = "Test" }
             };
 
             GenreItems = new ObservableCollection<GenreInfo>()
@@ -84,12 +114,14 @@ namespace SyousetsukaGetter.ViewModel
                 new GenreInfo() { ID = "9801", Name = "ノンジャンル〔ノンジャンル〕" },
             };
 
-            PlusBTClick = new RelayCommand<string>(PlusBT_Click);
+            PlusBTClick = new RelayCommand<int>(PlusBT_Click);
         }
 
-        public void PlusBT_Click(string e)
+        public void PlusBT_Click(int id)
         {
-            Console.WriteLine("ID : " + e);
+            Console.WriteLine("ID : " + SearchListData[id].ID);
+            SearchListData[id].PlusBTVisibility = Visibility.Hidden;
+            SearchListData[id].MinusBTVisibility = Visibility.Visible;
         }
     }
 }
