@@ -12,18 +12,8 @@ namespace SyousetukaGetterLib
     {
         static void Main(string[] args)
         {
-            var url = new NovelUrlManager();
-            string[] tmp = url.Novel(4);
-
-            WebClient wc = new WebClient();
-
-            Stream st = wc.OpenRead(tmp[0]);
-            Encoding enc = Encoding.GetEncoding("UTF-8");
-            StreamReader sr = new StreamReader(st, enc);
-            string html = sr.ReadToEnd();
-            sr.Close();
-            st.Close();
-            Console.WriteLine(html);
+            var tmp = new PageDownloader();
+            tmp.StartDownload(2);
             Console.ReadLine();
 
         }
