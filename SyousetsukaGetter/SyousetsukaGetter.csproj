@@ -71,6 +71,7 @@
     <Compile Include="Elements\Minus.xaml.cs">
       <DependentUpon>Minus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\SearchWindowModel.cs" />
     <Compile Include="ViewModel\ListClassBase.cs" />
     <Compile Include="ViewModel\SearchWindowViewModel.cs" />
     <Compile Include="View\SearchWindow.xaml.cs">
@@ -101,7 +102,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="Model\JsonLoader.cs" />
     <Compile Include="View\InteractiveCommand.cs" />
     <Compile Include="Localize\ResourceService.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -157,6 +157,10 @@
     <ProjectReference Include="..\KimamaLib\KimamaLib.csproj">
       <Project>{14d8ed91-beda-4db7-b918-0c625defdf78}</Project>
       <Name>KimamaLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SyousetukaGetterLib\SyousetukaGetterLib.csproj">
+      <Project>{5ced6169-3a89-46b3-ab58-da5b68f4d090}</Project>
+      <Name>SyousetukaGetterLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

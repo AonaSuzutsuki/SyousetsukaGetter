@@ -65,17 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonLoader.cs" />
-    <Compile Include="Linechang.cs" />
+    <None Include="Linechang.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="NovelUrlManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JsonUrlManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SyousetsukaGetter\SyousetsukaGetter.csproj">
-      <Project>{BCAB64F4-18F1-4143-9CEE-F7C44F7B08AD}</Project>
-      <Name>SyousetsukaGetter</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Memo.txt" />
