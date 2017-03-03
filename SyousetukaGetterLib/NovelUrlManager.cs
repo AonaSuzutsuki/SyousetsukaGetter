@@ -9,15 +9,25 @@ namespace SyousetukaGetterLib
     class NovelUrlManager
     {
         private const string defaultNovelUrl = "http://ncode.syosetu.com";
-        private string nCode;
-        private int page = 1;
         private JsonUrlManager json = new JsonUrlManager();
+
+        public string NCode
+        {
+            get;
+            private set;
+        }
+
+        public int Page
+        {
+            get;
+           private set;
+        }
 
         private string NovelUrl
         {
             get
             {
-                return defaultNovelUrl + "/" + nCode + "/";
+                return defaultNovelUrl + "/" + NCode + "/";
             }
         }
 
@@ -31,7 +41,6 @@ namespace SyousetukaGetterLib
             var loader = new JsonLoader(json.JsonUrl);
             bool novelType = NovelType(loader, index);
             GetNcode(loader, index);
-
             GetPage(loader, index, novelType);
             return GetNovel(novelType);
         }
@@ -41,7 +50,7 @@ namespace SyousetukaGetterLib
          * */
         private void GetNcode(JsonLoader loader, int index)
         {
-            nCode = loader.GetValue(index, "ncode");
+            NCode = loader.GetValue(index, "ncode");
         }
         /*
          * page数を取得する。
@@ -53,12 +62,12 @@ namespace SyousetukaGetterLib
             if (novelType)
             {
                 generalAllNo = loader.GetValue(index, "general_all_no");
-                page = int.Parse(generalAllNo);
+                Page = int.Parse(generalAllNo);
                 return;
             }
             else
             {
-                page = 1;
+                Page = 1;
                 return;
             }
 
@@ -69,10 +78,10 @@ namespace SyousetukaGetterLib
          * */
         private string[] GetNovel(bool novelType)
         {
-            string[] novelUrl = new string[page];
+            string[] novelUrl = new string[Page];
             if (novelType)
             {
-                for (int i = 0; i < page; i++)
+                for (int i = 0; i < Page; i++)
                 {
                     novelUrl[i] = NovelUrl + Convert.ToString(i + 1);
                 }

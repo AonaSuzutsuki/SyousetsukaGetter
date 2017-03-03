@@ -12,6 +12,12 @@ namespace SyousetukaGetterLib
     {
         private NovelUrlManager novelUrl = new NovelUrlManager();
 
+        public Dictionary<string, List<string>> NovelText
+        {
+            get;
+            private set;
+        } = new Dictionary<string, List<string>>();
+
         /*
          * 小説のダウンロードを行う。
          * 
@@ -19,11 +25,13 @@ namespace SyousetukaGetterLib
         public void StartDownload(int index)
         {
             string[] urls = novelUrl.Novel(index);
+            var text = new List<string>();
             foreach (string url in urls)
             {
                 string html = GetHtml(url);
-                AnalysisHtml(html);
+                text.Add(AnalysisHtml(html));
             }
+            NovelText.Add(novelUrl.NCode, text);
             return;
         }
         /*
@@ -45,7 +53,7 @@ namespace SyousetukaGetterLib
          * Htmlのデータを解析する。
          * 
          * */
-        private void AnalysisHtml(string html)
+        private string AnalysisHtml(string html)
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
             doc.OptionAutoCloseOnEnd = false;  //最後に自動で閉じる（？）
@@ -53,12 +61,23 @@ namespace SyousetukaGetterLib
             doc.OptionFixNestedTags = true;    //閉じタグが欠如している場合の処理
             doc.LoadHtml(html);
             HtmlAgilityPack.HtmlNode node = doc.GetElementbyId("novel_honbun");
-            System.Console.WriteLine(node.InnerHtml.Replace("<br>", ""));
-            System.Console.ReadLine();
+            string text = node.InnerHtml.Replace("<br>", "");
+            return text;
+        }
+        /*
+         * 本文の表示を行う。
+         * 
+         * */
+         public void GetText()
+         {
+            List<string> texts = NovelText[novelUrl.NCode];
+            foreach(string text in texts)
+            {
+                Console.WriteLine(text); //本来は本文をダウンロードするためのメソッドを実装する。
+                Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++");
+            }
             return;
         }
-
-
 
 
 

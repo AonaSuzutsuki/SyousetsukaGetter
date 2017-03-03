@@ -13,9 +13,9 @@ namespace SyousetukaGetterLib
         static void Main(string[] args)
         {
             var tmp = new PageDownloader();
-            tmp.StartDownload(2);
-            Console.ReadLine();
-
+            tmp.StartDownload(7);
+            tmp.GetText();
+            Console.Read();
         }
     }
 }
