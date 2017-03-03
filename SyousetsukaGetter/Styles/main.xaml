@@ -1047,7 +1047,36 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
+    <!-- Minus Button -->
+    <Style x:Key="MinusBT" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                        <Grid Width="25" Height="25">
+                            <Rectangle Height="2" Margin="0" Width="13" Fill="White"/>
+                        </Grid>
+                        <ContentPresenter Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.3" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 
     <!-- ContextMenu -->
     <!--<Style TargetType="{x:Type ContextMenu}">
@@ -1156,11 +1185,9 @@
                         <Border
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}"
-                        Padding="15">
-                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="15" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
                         </Border>
-                        
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1175,6 +1202,7 @@
             </MultiTrigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#444"/>
+                <Setter Property="BorderBrush" Value="#444" />
             </Trigger>
         </Style.Triggers>
     </Style>

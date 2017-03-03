@@ -125,4 +125,12 @@
     <value>ファイル(_F)</value>
     <comment>UI</comment>
   </data>
+  <data name="UI_HelpBT" xml:space="preserve">
+    <value>ヘルプ(_H)</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_VersionInfoBT" xml:space="preserve">
+    <value>バージョン情報(_V)</value>
+    <comment>UI</comment>
+  </data>
 </root>
