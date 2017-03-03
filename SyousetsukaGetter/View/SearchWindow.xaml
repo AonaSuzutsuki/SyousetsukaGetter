@@ -167,34 +167,52 @@
                             <ColumnDefinition Width="5" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="リセット" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
-                        <Button Grid.Column="2" Content="検索" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
+                        <Button Grid.Column="0" Content="検索" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
+                        <Button Grid.Column="2" Content="リセット" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
                     </Grid>
                 </Grid>
                 
                 <Grid Grid.Column="1" Margin="10,0,0,0">
-                    <ListBox ItemsSource="{Binding SearchListData}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    
+                    <ListBox Grid.Row="0"  ItemsSource="{Binding SearchListData}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <StackPanel>
                                         <TextBlock>
-                                        <Run Text="{Binding ID}" />
+                                        <Run Text="{Binding NID}" />
                                         </TextBlock>
                                         <TextBlock>
                                         <Run Text="{Binding Name}" />
                                         </TextBlock>
                                     </StackPanel>
-                                    <Button Name="PlusBT" Width="25" Height="25" HorizontalAlignment="Right" Style="{DynamicResource PlusBT}" Command="{Binding DataContext.PlusBTClick, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding ID}" />
+                                    <Button Name="PlusBT" Width="25" Height="25" Visibility="{Binding PlusBTVisibility}" HorizontalAlignment="Right" Style="{DynamicResource PlusBT}" Command="{Binding DataContext.PlusBTClick, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding ID}" />
+                                    <Button Name="MinusBT" Width="25" Height="25" Visibility="{Binding MinusBTVisibility}" HorizontalAlignment="Right" Style="{DynamicResource MinusBT}" Command="{Binding DataContext.PlusBTClick, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding ID}" />
                                 </Grid>
                                 <DataTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="false">
                                         <Setter Property="Opacity" Value="0" TargetName="PlusBT" />
+                                        <Setter Property="Opacity" Value="0" TargetName="MinusBT" />
                                     </Trigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+
+                    <Grid Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="OK" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
+                        <Button Grid.Column="2" Content="キャンセル" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding MainWindowCloseBTClick}" />
+                    </Grid>
+                    
                 </Grid>
                 
             </Grid>

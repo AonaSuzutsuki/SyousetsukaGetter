@@ -84,6 +84,7 @@ namespace SyousetukaGetterLib
 
         public string GetValue(int index, string key)
         {
+            if (Nodes.Count < index || index < 0) return null;
             var dic = Nodes[index];
             foreach (KeyValuePair<string, string> pair in dic)
             {
