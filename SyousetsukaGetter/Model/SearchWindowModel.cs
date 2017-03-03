@@ -48,6 +48,8 @@ namespace SyousetsukaGetter.Model
                 {
                     NCode = node["ncode"],
                     Title = node["title"],
+                    BigGenre = GenreInfos.BigGenresDictionary[node["biggenre"]],
+                    Genre = GenreInfos.GenresDictionary[node["genre"]],
                     GeneralAllNo = int.Parse(node["general_all_no"]),
                 };
                 novels.Add(novel);
@@ -60,6 +62,8 @@ namespace SyousetsukaGetter.Model
                     ID = item.i,
                     NID = item.v.NCode,
                     Name = item.v.Title,
+                    BigGenre = item.v.BigGenre,
+                    Genre = item.v.Genre,
                 };
                 vm.SearchListData.Add(searchListDataInfo);
             }

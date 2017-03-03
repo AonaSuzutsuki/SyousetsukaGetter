@@ -71,6 +71,7 @@
     <Compile Include="Elements\Minus.xaml.cs">
       <DependentUpon>Minus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\GenreInfo.cs" />
     <Compile Include="Model\SearchWindowModel.cs" />
     <Compile Include="ViewModel\ListClassBase.cs" />
     <Compile Include="ViewModel\SearchWindowViewModel.cs" />
