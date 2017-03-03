@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonLoader.cs" />
-    <None Include="Linechang.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="NovelUrlManager.cs" />
     <Compile Include="PageDownloader.cs" />
