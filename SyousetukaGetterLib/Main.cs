@@ -12,8 +12,10 @@ namespace SyousetukaGetterLib
     {
         static void Main(string[] args)
         {
-            var url = new PageDownloader();
-            url.StartDownload(2);
+            var tmp = new PageDownloader();
+            tmp.StartDownload(2);
+            Console.ReadLine();
+
         }
     }
 }

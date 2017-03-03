@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml.Linq;
@@ -54,6 +57,9 @@ namespace SyousetukaGetterLib
             System.Console.ReadLine();
             return;
         }
+
+        
+
 
 
     }
