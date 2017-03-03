@@ -75,7 +75,8 @@ namespace SyousetukaGetterLib
                 string name = node.ParentNode.LocalName;
                 string value = node.InnerText;
 
-                dic.Add(name, value);
+                if (!dic.ContainsKey(name))
+                    dic.Add(name, value);
             }
         }
         private string decodeEncodedNonAsciiCharacters(string value)
