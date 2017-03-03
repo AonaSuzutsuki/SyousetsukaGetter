@@ -68,6 +68,7 @@
     <None Include="Linechang.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="NovelUrlManager.cs" />
+    <Compile Include="PageDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JsonUrlManager.cs" />
   </ItemGroup>
