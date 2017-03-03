@@ -29,9 +29,11 @@ namespace SyousetukaGetterLib
         public string[] Novel(int index)
         {
             var loader = new JsonLoader(json.JsonUrl);
+            bool novelType = NovelType(loader, index);
             GetNcode(loader, index);
-            GetPage(loader, index);
-            return GetNovel();
+
+            GetPage(loader, index, novelType);
+            return GetNovel(novelType);
         }
         /*
          * Ncodeを取得する。
@@ -45,25 +47,61 @@ namespace SyousetukaGetterLib
          * page数を取得する。
          * 
          * */
-        private void GetPage(JsonLoader loader, int index)
+        private void GetPage(JsonLoader loader, int index, bool novelType)
         {
             string generalAllNo = "1";
-            generalAllNo = loader.GetValue(index, "general_all_no");
-            page = int.Parse(generalAllNo);
-            return;
+            if (novelType)
+            {
+                generalAllNo = loader.GetValue(index, "general_all_no");
+                page = int.Parse(generalAllNo);
+                return;
+            }
+            else
+            {
+                page = 1;
+                return;
+            }
+
         }
         /*
          * 小説をダウンロードするためのurlを取得する。
          * 
          * */
-        private string[] GetNovel()
+        private string[] GetNovel(bool novelType)
         {
             string[] novelUrl = new string[page];
-            for (int i = 0; i < page; i++)
+            if (novelType)
             {
-                novelUrl[i] = NovelUrl + Convert.ToString(i + 1);
+                for (int i = 0; i < page; i++)
+                {
+                    novelUrl[i] = NovelUrl + Convert.ToString(i + 1);
+                }
+                return novelUrl;
             }
-            return novelUrl;
+            else
+            {
+                novelUrl[0] = NovelUrl;
+                return novelUrl;
+            }
+
+        }
+        /*
+         * 連載か短編かを判定する。
+         * (連載 juge = 1, 短編 juge = 2)
+         * 
+         * */
+        private bool NovelType(JsonLoader loader, int index)
+        {
+            int juge = int.Parse(loader.GetValue(index, "novel_type"));
+            if (juge == 1)
+            {
+                return true;
+            }
+            else if (juge == 2)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
