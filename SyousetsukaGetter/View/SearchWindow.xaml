@@ -55,15 +55,8 @@
                 <Button Name="MainMaximumBT" Content="{Binding MainWindowMaximumBTContent}" Style="{DynamicResource CaptionButtonStyleKey}" Command="{Binding MainWindowMaximumBTClick}" />
                 <Button Name="MainWindowCloseBT" Content="{Binding MainWindowCloseBTContent}" Style="{DynamicResource CaptionButtonStyleKey}" Command="{Binding MainWindowCloseBTClick}" />
             </StackPanel>
-            <StackPanel Margin="1,25,1,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <Menu IsMainMenu="True" Name="Menu" Height="25" Padding="3" VerticalAlignment="Top">
-                    <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_FileBT, Mode=OneWay}">
-                        <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_ExitBT, Mode=OneWay}" Name="MenuExitBT" Command="{Binding MainWindowCloseBTClick}" />
-                    </MenuItem>
-                </Menu>
-            </StackPanel>
-
-            <Grid Margin="10,55,10,10">
+            
+            <Grid Margin="10,25,10,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300" />
                     <ColumnDefinition />
@@ -167,7 +160,7 @@
                             <ColumnDefinition Width="5" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="検索" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
+                        <Button Grid.Column="0" Content="検索" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding SearchBTClick}" />
                         <Button Grid.Column="2" Content="リセット" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
                     </Grid>
                 </Grid>
@@ -177,7 +170,7 @@
                         <RowDefinition />
                         <RowDefinition Height="30" />
                     </Grid.RowDefinitions>
-                    
+
                     <ListBox Grid.Row="0"  ItemsSource="{Binding SearchListData}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

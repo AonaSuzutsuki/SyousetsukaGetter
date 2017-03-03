@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace SyousetsukaGetter.ViewModel
 {
@@ -44,6 +45,7 @@ namespace SyousetsukaGetter.ViewModel
                     return minusBTVisibility;
                 }
             }
+            public bool IsPlus { set; get; } = false;
         }
 
         public class GenreInfo
@@ -52,32 +54,36 @@ namespace SyousetsukaGetter.ViewModel
             public string Name { set; get; }
         }
 
-        Model.SearchWindowModel model = new Model.SearchWindowModel(this);
+        Model.SearchWindowModel model;
 
         #region Properties
-        public ObservableCollection<SearchListDataInfo> SearchListData { set; get; }
+        public ObservableCollection<SearchListDataInfo> SearchListData { set; get; } = new ObservableCollection<SearchListDataInfo>();
         public ObservableCollection<GenreInfo> GenreItems { set; get; }
         public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
         #endregion
 
         #region EventProperties
         public ICommand PlusBTClick { private set; get; }
+        public ICommand SearchBTClick { private set; get; }
+        private Brush listBoxItemBackground = Brushes.Transparent;
+        public Brush ListBoxItemBackground
+        {
+            set
+            {
+                listBoxItemBackground = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return listBoxItemBackground;
+            }
+        }
         #endregion
 
         public SearchWindowViewModel(Window view) : base(view)
         {
-            SearchListData = new ObservableCollection<SearchListDataInfo>()
-            {
-                new SearchListDataInfo() { ID = 0, NID = "0", Name = "Test" },
-                new SearchListDataInfo() { ID = 1, NID = "1", Name = "Test" },
-                new SearchListDataInfo() { ID = 2, NID = "2", Name = "Test" },
-                new SearchListDataInfo() { ID = 3, NID = "3", Name = "Test" },
-                new SearchListDataInfo() { ID = 4, NID = "4", Name = "Test" },
-                new SearchListDataInfo() { ID = 5, NID = "5", Name = "Test" },
-                new SearchListDataInfo() { ID = 6, NID = "6", Name = "Test" },
-                new SearchListDataInfo() { ID = 7, NID = "7", Name = "Test" },
-                new SearchListDataInfo() { ID = 8, NID = "8", Name = "Test" }
-            };
+            model = new Model.SearchWindowModel(this);
+
 
             GenreItems = new ObservableCollection<GenreInfo>()
             {
@@ -114,14 +120,35 @@ namespace SyousetsukaGetter.ViewModel
                 new GenreInfo() { ID = "9801", Name = "ノンジャンル〔ノンジャンル〕" },
             };
 
+            SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
+        }
+
+        public void SearchBT_Click()
+        {
+            ListBoxItemBackground = Brushes.White;
+            model.Search();
         }
 
         public void PlusBT_Click(int id)
         {
             Console.WriteLine("ID : " + SearchListData[id].ID);
-            SearchListData[id].PlusBTVisibility = Visibility.Hidden;
-            SearchListData[id].MinusBTVisibility = Visibility.Visible;
+            if (!SearchListData[id].IsPlus)
+            {
+                SearchListData[id].PlusBTVisibility = Visibility.Hidden;
+                SearchListData[id].MinusBTVisibility = Visibility.Visible;
+                SearchListData[id].IsPlus = true;
+
+                model.AddSaveNodel(id);
+            }
+            else
+            {
+                SearchListData[id].PlusBTVisibility = Visibility.Visible;
+                SearchListData[id].MinusBTVisibility = Visibility.Hidden;
+                SearchListData[id].IsPlus = false;
+                
+                model.RemoveSaveNodel(id);
+            }
         }
     }
 }

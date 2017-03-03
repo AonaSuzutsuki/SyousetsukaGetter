@@ -22,9 +22,12 @@ namespace SyousetukaGetterLib
             string json;
             if (localFile)
             {
-                using (StreamReader sr = new StreamReader("test.txt"))
+                using (FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    json = sr.ReadToEnd();
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        json = sr.ReadToEnd();
+                    }
                 }
             }
             else

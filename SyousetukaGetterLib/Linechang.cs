@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web; //参照設定の追加
 using System.Net; //HTTPアクセス
-using Codeplex.Data; //DynamicJson
 
 namespace SyousetukaGetterLib
 {

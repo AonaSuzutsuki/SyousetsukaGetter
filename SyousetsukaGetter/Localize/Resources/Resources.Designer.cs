@@ -77,5 +77,23 @@ namespace SyousetsukaGetter.Localize.Resources {
                 return ResourceManager.GetString("UI_FileBT", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ヘルプ(_H) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_HelpBT {
+            get {
+                return ResourceManager.GetString("UI_HelpBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   バージョン情報(_V) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_VersionInfoBT {
+            get {
+                return ResourceManager.GetString("UI_VersionInfoBT", resourceCulture);
+            }
+        }
     }
 }

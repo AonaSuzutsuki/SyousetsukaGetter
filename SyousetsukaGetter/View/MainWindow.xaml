@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:SyousetsukaGetter.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700"
+        Title="MainWindow" Height="500" Width="800"
         ShowInTaskbar="True"
         Topmost="False"
         WindowStartupLocation="CenterScreen"
@@ -58,6 +58,9 @@
                 <Menu IsMainMenu="True" Name="Menu" Height="25" Padding="3" VerticalAlignment="Top">
                     <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_FileBT, Mode=OneWay}">
                         <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_ExitBT, Mode=OneWay}" Name="MenuExitBT" Command="{Binding MainWindowCloseBTClick}" />
+                    </MenuItem>
+                    <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_HelpBT, Mode=OneWay}">
+                        <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_VersionInfoBT, Mode=OneWay}" Command="{Binding MainWindowCloseBTClick}" />
                     </MenuItem>
                 </Menu>
             </StackPanel>

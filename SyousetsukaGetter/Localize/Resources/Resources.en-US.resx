@@ -125,4 +125,12 @@
     <value>File(_F)</value>
     <comment>UI</comment>
   </data>
+  <data name="UI_HelpBT" xml:space="preserve">
+    <value>Help(_H)</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_VersionInfoBT" xml:space="preserve">
+    <value>Version Info(_V)</value>
+    <comment>UI</comment>
+  </data>
 </root>
