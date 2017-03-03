@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using SyousetsukaGetter.Model;
 
 namespace SyousetsukaGetter.ViewModel
 {
@@ -19,6 +20,11 @@ namespace SyousetsukaGetter.ViewModel
             public int ID { set; get; }
             public string NID { set; get; }
             public string Name { set; get; }
+            public string BigGenre { set; get; }
+            public string Genre { set; get; }
+
+            public bool IsPlus { set; get; } = false;
+
             private Visibility plusBTVisibility = Visibility.Visible;
             public Visibility PlusBTVisibility
             {
@@ -45,15 +51,22 @@ namespace SyousetsukaGetter.ViewModel
                     return minusBTVisibility;
                 }
             }
-            public bool IsPlus { set; get; } = false;
-        }
 
-        public class GenreInfo
-        {
-            public string ID { set; get; }
-            public string Name { set; get; }
+            private Brush listBoxItemBackground = Brushes.Transparent;
+            public Brush ListBoxItemBackground
+            {
+                set
+                {
+                    listBoxItemBackground = value;
+                    OnPropertyChanged(this);
+                }
+                get
+                {
+                    return listBoxItemBackground;
+                }
+            }
         }
-
+        
         Model.SearchWindowModel model;
 
         #region Properties
@@ -65,19 +78,6 @@ namespace SyousetsukaGetter.ViewModel
         #region EventProperties
         public ICommand PlusBTClick { private set; get; }
         public ICommand SearchBTClick { private set; get; }
-        private Brush listBoxItemBackground = Brushes.Transparent;
-        public Brush ListBoxItemBackground
-        {
-            set
-            {
-                listBoxItemBackground = value;
-                OnPropertyChanged(this);
-            }
-            get
-            {
-                return listBoxItemBackground;
-            }
-        }
         #endregion
 
         public SearchWindowViewModel(Window view) : base(view)
@@ -85,40 +85,9 @@ namespace SyousetsukaGetter.ViewModel
             model = new Model.SearchWindowModel(this);
 
 
-            GenreItems = new ObservableCollection<GenreInfo>()
-            {
-                new GenreInfo() { ID = "1", Name = "恋愛" },
-                new GenreInfo() { ID = "2", Name = "ファンタジー" },
-                new GenreInfo() { ID = "3", Name = "文芸" },
-                new GenreInfo() { ID = "4", Name = "SF" },
-                new GenreInfo() { ID = "98", Name = "その他" },
-                new GenreInfo() { ID = "99", Name = "ノンジャンル" },
-            };
+            GenreItems = new ObservableCollection<GenreInfo>(GenreInfos.BigGenres);
 
-            SecondGenreItems = new ObservableCollection<GenreInfo>()
-            {
-                new GenreInfo() { ID = "101", Name = "異世界〔恋愛〕" },
-                new GenreInfo() { ID = "102", Name = "現実世界〔恋愛〕" },
-                new GenreInfo() { ID = "201", Name = "ハイファンタジー〔ファンタジー〕" },
-                new GenreInfo() { ID = "202", Name = "ローファンタジー〔ファンタジー〕" },
-                new GenreInfo() { ID = "301", Name = "純文学〔文芸〕" },
-                new GenreInfo() { ID = "302", Name = "ヒューマンドラマ〔文芸〕" },
-                new GenreInfo() { ID = "303", Name = "歴史〔文芸〕" },
-                new GenreInfo() { ID = "304", Name = "推理〔文芸〕" },
-                new GenreInfo() { ID = "305", Name = "ホラー〔文芸〕" },
-                new GenreInfo() { ID = "306", Name = "アクション〔文芸〕" },
-                new GenreInfo() { ID = "307", Name = "コメディー〔文芸〕" },
-                new GenreInfo() { ID = "401", Name = "VRゲーム〔SF〕" },
-                new GenreInfo() { ID = "402", Name = "宇宙〔SF〕" },
-                new GenreInfo() { ID = "403", Name = "空想科学〔SF〕" },
-                new GenreInfo() { ID = "404", Name = "パニック〔SF〕" },
-                new GenreInfo() { ID = "9901", Name = "童話〔その他〕" },
-                new GenreInfo() { ID = "9902", Name = "詩〔その他〕" },
-                new GenreInfo() { ID = "9903", Name = "エッセイ〔その他〕" },
-                new GenreInfo() { ID = "9904", Name = "リプレイ〔その他〕" },
-                new GenreInfo() { ID = "9999", Name = "その他〔その他〕" },
-                new GenreInfo() { ID = "9801", Name = "ノンジャンル〔ノンジャンル〕" },
-            };
+            SecondGenreItems = new ObservableCollection<GenreInfo>(GenreInfos.Genres);
 
             SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
@@ -126,7 +95,6 @@ namespace SyousetsukaGetter.ViewModel
 
         public void SearchBT_Click()
         {
-            ListBoxItemBackground = Brushes.White;
             model.Search();
         }
 
@@ -138,6 +106,7 @@ namespace SyousetsukaGetter.ViewModel
                 SearchListData[id].PlusBTVisibility = Visibility.Hidden;
                 SearchListData[id].MinusBTVisibility = Visibility.Visible;
                 SearchListData[id].IsPlus = true;
+                SearchListData[id].ListBoxItemBackground = new SolidColorBrush(Color.FromArgb(200, 0, 0, 0));
 
                 model.AddSaveNodel(id);
             }
@@ -146,7 +115,8 @@ namespace SyousetsukaGetter.ViewModel
                 SearchListData[id].PlusBTVisibility = Visibility.Visible;
                 SearchListData[id].MinusBTVisibility = Visibility.Hidden;
                 SearchListData[id].IsPlus = false;
-                
+                SearchListData[id].ListBoxItemBackground = Brushes.Transparent;
+
                 model.RemoveSaveNodel(id);
             }
         }
