@@ -22,7 +22,7 @@ namespace SyousetukaGetterLib
             foreach (string url in urls)
             {
                 string html = GetHtml(url);
-                AnalysisHtml(url);
+                AnalysisHtml(html);
             }
             return;
         }
@@ -49,11 +49,11 @@ namespace SyousetukaGetterLib
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
             doc.OptionAutoCloseOnEnd = false;  //最後に自動で閉じる（？）
-            doc.OptionCheckSyntax = false;     //文法チェック。
+            doc.OptionCheckSyntax = true;     //文法チェック。
             doc.OptionFixNestedTags = true;    //閉じタグが欠如している場合の処理
             doc.LoadHtml(html);
-            HtmlAgilityPack.HtmlNode node = doc.DocumentNode.SelectSingleNode("div[@id='novel_honbun']");
-            System.Console.WriteLine(node.InnerHtml);
+            HtmlAgilityPack.HtmlNode node = doc.GetElementbyId("novel_honbun");
+            System.Console.WriteLine(node.InnerHtml.Replace("<br>", ""));
             System.Console.ReadLine();
             return;
         }
