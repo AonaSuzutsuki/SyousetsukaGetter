@@ -8,11 +8,14 @@ namespace SyousetukaGetterLib
 {
     public class MainClass
     {
-        static void Main(string[] args) {
-            var url = new UrlManager();
-            var jsonLoader = new JsonLoader(url.Url);
-            string tmp = jsonLoader.GetValue(2, "title");
-            Console.WriteLine(tmp);
+        static void Main(string[] args)
+        {
+            var url = new NovelUrlManager();
+            string[] tmp = url.Novel(8);
+            foreach (string a in tmp)
+            {
+                Console.WriteLine(a);
+            }
             Console.ReadLine();
         }
     }
