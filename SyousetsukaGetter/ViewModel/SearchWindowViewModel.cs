@@ -95,6 +95,7 @@ namespace SyousetsukaGetter.ViewModel
 
         public void SearchBT_Click()
         {
+            SearchListData.Clear();
             model.Search();
         }
 
