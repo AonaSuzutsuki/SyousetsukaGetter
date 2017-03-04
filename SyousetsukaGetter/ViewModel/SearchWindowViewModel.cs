@@ -71,7 +71,13 @@ namespace SyousetsukaGetter.ViewModel
 
         #region Properties
         public ObservableCollection<SearchListDataInfo> SearchListData { set; get; } = new ObservableCollection<SearchListDataInfo>();
+        /// <summary>
+        /// ジャンル一覧
+        /// </summary>
         public ObservableCollection<GenreInfo> GenreItems { set; get; }
+        /// <summary>
+        /// 第二ジャンル一覧
+        /// </summary>
         public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
 
         /// <summary>
@@ -82,6 +88,46 @@ namespace SyousetsukaGetter.ViewModel
             set;
             get;
         }
+
+        /// <summary>
+        /// タイトルを検索対象にする
+        /// </summary>
+        public bool? TitleIsChecked { set; get; } = true;
+        /// <summary>
+        /// あらすじを検索対象にする
+        /// </summary>
+        public bool? StoryIsChecked { set; get; } = true;
+        /// <summary>
+        /// キーワードを検索対象にする
+        /// </summary>
+        public bool? KeywordIsChecked { set; get; } = true;
+        /// <summary>
+        /// 作者を検索対象にする
+        /// </summary>
+        public bool? WriterIsChecked { set; get; } = true;
+
+        /// <summary>
+        /// ジャンルリストで指定されたインデックス
+        /// </summary>
+        public int GenreSelectedIndex { set; get; } = 0;
+        /// <summary>
+        /// 第二ジャンルリストで指定されたインデックス
+        /// </summary>
+        public int SecondGenreSelectedIndex { set; get; } = 0;
+
+        /// <summary>
+        /// ユーザーIDの入力文字
+        /// </summary>
+        public string UserIDText { set; get; }
+        /// <summary>
+        /// ncodeの入力文字
+        /// </summary>
+        public string NCodeText { set; get; }
+
+        /// <summary>
+        /// 検索対象数の入力文字
+        /// </summary>
+        public string SearchNumText { set; get; }
         #endregion
 
         #region EventProperties
