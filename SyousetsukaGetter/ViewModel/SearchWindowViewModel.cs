@@ -109,11 +109,35 @@ namespace SyousetsukaGetter.ViewModel
         /// <summary>
         /// ジャンルリストで指定されたインデックス
         /// </summary>
-        public int GenreSelectedIndex { set; get; } = 0;
+        private int genreSelectedIndex = 0;
+        public int GenreSelectedIndex
+        {
+            set
+            {
+                genreSelectedIndex = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return genreSelectedIndex;
+            }
+        }
         /// <summary>
         /// 第二ジャンルリストで指定されたインデックス
         /// </summary>
-        public int SecondGenreSelectedIndex { set; get; } = 0;
+        private int secondGenreSelectedIndex = 0;
+        public int SecondGenreSelectedIndex
+        {
+            set
+            {
+                secondGenreSelectedIndex = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return secondGenreSelectedIndex;
+            }
+        }
 
         /// <summary>
         /// ユーザーIDの入力文字
@@ -134,6 +158,9 @@ namespace SyousetsukaGetter.ViewModel
         public ICommand PlusBTClick { private set; get; }
         public ICommand SearchBTClick { private set; get; }
         public ICommand OKBT_Click { private set; get; }
+
+        public ICommand GenreSelectionChanged { private set; get; }
+        public ICommand SecondGenreSelectionChanged { private set; get; }
         #endregion
 
         public SearchWindowViewModel(Window view) : base(view)
@@ -148,6 +175,9 @@ namespace SyousetsukaGetter.ViewModel
             SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
             OKBT_Click = new RelayCommand(OKBTClick);
+
+            GenreSelectionChanged = new RelayCommand(Genre_SelectionChanged);
+            SecondGenreSelectionChanged = new RelayCommand(SecondGenre_SelectionChanged);
         }
 
         public void SearchBT_Click()
@@ -176,6 +206,34 @@ namespace SyousetsukaGetter.ViewModel
                 SearchListData[id].ListBoxItemBackground = Brushes.Transparent;
 
                 model.RemoveSaveNodel(id);
+            }
+        }
+
+        bool selectionStop = false;
+        public void Genre_SelectionChanged()
+        {
+            if (selectionStop)
+            {
+                selectionStop = false;
+                return;
+            }
+            if (SecondGenreSelectedIndex > 0)
+            {
+                selectionStop = true;
+                SecondGenreSelectedIndex = 0;
+            }
+        }
+        public void SecondGenre_SelectionChanged()
+        {
+            if (selectionStop)
+            {
+                selectionStop = false;
+                return;
+            }
+            if (GenreSelectedIndex > 0)
+            {
+                selectionStop = true;
+                GenreSelectedIndex = 0;
             }
         }
 
