@@ -8,11 +8,19 @@ namespace SyousetsukaGetter.Model
 {
     public static class SharedData
     {
-        public static string SavedNovelDirPath
+        public static string SavedNovelListDirPath
         {
             get
             {
                 return KimamaLib.AppInfo.GetAppPath() + @"\Novels\List";
+            }
+        }
+
+        public static string SavelNovelDirPath
+        {
+            get
+            {
+                return KimamaLib.AppInfo.GetAppPath() + @"\Novels\Text";
             }
         }
     }

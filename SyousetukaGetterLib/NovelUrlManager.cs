@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyousetukaGetterLib
 {
-    class NovelUrlManager
+    public class NovelUrlManager
     {
         private const string defaultNovelUrl = "http://ncode.syosetu.com";
         private JsonUrlManager json = new JsonUrlManager();
