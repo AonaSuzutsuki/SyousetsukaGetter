@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="JsonLoader.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="NovelDownloader.cs" />
     <Compile Include="NovelUrlManager.cs" />
     <Compile Include="PageDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
