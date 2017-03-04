@@ -67,14 +67,14 @@
 
                         <StackPanel>
                             <Label Content="検索単語" />
-                            <TextBox Text="{Binding SearchWordText}" />
+                            <TextBox Text="{Binding SearchWordText, Mode=OneWayToSource}" />
                         </StackPanel>
 
                         <StackPanel>
-                            <CheckBox Content="タイトル" />
-                            <CheckBox Content="あらすじ" />
-                            <CheckBox Content="キーワード" />
-                            <CheckBox Content="作者名" />
+                            <CheckBox Content="タイトル" IsChecked="{Binding TitleIsChecked}" />
+                            <CheckBox Content="あらすじ" IsChecked="{Binding StoryIsChecked}" />
+                            <CheckBox Content="キーワード" IsChecked="{Binding KeywordIsChecked}" />
+                            <CheckBox Content="作者名" IsChecked="{Binding WriterIsChecked}" />
                         </StackPanel>
 
                         <Grid>
@@ -86,7 +86,7 @@
 
                             <StackPanel Grid.Column="0">
                                 <Label Content="ジャンル" />
-                                <ComboBox ItemsSource="{Binding GenreItems}">
+                                <ComboBox ItemsSource="{Binding GenreItems}" SelectedIndex="{Binding GenreSelectedIndex}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -98,7 +98,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="2">
                                 <Label Content="第二ジャンル" />
-                                <ComboBox ItemsSource="{Binding SecondGenreItems}">
+                                <ComboBox ItemsSource="{Binding SecondGenreItems}" SelectedIndex="{Binding SecondGenreSelectedIndex}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -112,44 +112,18 @@
 
                         <StackPanel>
                             <Label Content="ユーザーID" />
-                            <TextBox />
+                            <TextBox Text="{Binding UserIDText, Mode=OneWayToSource}" />
                         </StackPanel>
 
                         <StackPanel>
                             <Label Content="Nコード" />
-                            <TextBox />
+                            <TextBox Text="{Binding NCodeText, Mode=OneWayToSource}" />
                         </StackPanel>
 
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
                             <StackPanel Grid.Column="0">
-                                <Label Content="最小文字数" />
-                                <ComboBox ItemsSource="{Binding GenreItems}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock>
-                                            <Run Text="{Binding Name}" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Grid.Column="2">
-                                <Label Content="最大文字数" />
-                                <ComboBox ItemsSource="{Binding SecondGenreItems}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock>
-                                            <Run Text="{Binding Name}" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
+                                <Label Content="検索数（表示数）" />
+                                <TextBox Text="{Binding SearchNumText, Mode=OneWayToSource}" />
                             </StackPanel>
                         </Grid>
 
