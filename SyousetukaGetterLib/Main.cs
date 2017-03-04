@@ -12,8 +12,10 @@ namespace SyousetukaGetterLib
     {
         static void Main(string[] args)
         {
-            var tmp = new PageDownloader();
-            tmp.StartDownload(7);
+            var jsonUrl = new JsonUrlManager();
+            jsonUrl.SetOrder(JsonUrlManager.Order.favnovelcnt);
+            var tmp = new PageDownloader(jsonUrl);
+            tmp.StartDownload(1);
             tmp.GetText();
             Console.Read();
         }
