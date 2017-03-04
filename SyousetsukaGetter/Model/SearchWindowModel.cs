@@ -28,6 +28,8 @@ namespace SyousetsukaGetter.Model
             var url = SetJsonUrl();
 
             var jsonLoader = new JsonLoader(url);
+
+            novels.Clear();
             for (int i = 1; i < jsonLoader.Nodes.Count; ++i)
             {
                 var node = jsonLoader.Nodes[i];

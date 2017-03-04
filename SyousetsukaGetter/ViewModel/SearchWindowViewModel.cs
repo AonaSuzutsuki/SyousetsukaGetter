@@ -158,9 +158,6 @@ namespace SyousetsukaGetter.ViewModel
         public ICommand PlusBTClick { private set; get; }
         public ICommand SearchBTClick { private set; get; }
         public ICommand OKBT_Click { private set; get; }
-
-        public ICommand GenreSelectionChanged { private set; get; }
-        public ICommand SecondGenreSelectionChanged { private set; get; }
         #endregion
 
         public SearchWindowViewModel(Window view) : base(view)
@@ -175,9 +172,6 @@ namespace SyousetsukaGetter.ViewModel
             SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
             OKBT_Click = new RelayCommand(OKBTClick);
-
-            GenreSelectionChanged = new RelayCommand(Genre_SelectionChanged);
-            SecondGenreSelectionChanged = new RelayCommand(SecondGenre_SelectionChanged);
         }
 
         public void SearchBT_Click()
@@ -210,32 +204,6 @@ namespace SyousetsukaGetter.ViewModel
         }
 
         bool selectionStop = false;
-        public void Genre_SelectionChanged()
-        {
-            if (selectionStop)
-            {
-                selectionStop = false;
-                return;
-            }
-            if (SecondGenreSelectedIndex > 0)
-            {
-                selectionStop = true;
-                SecondGenreSelectedIndex = 0;
-            }
-        }
-        public void SecondGenre_SelectionChanged()
-        {
-            if (selectionStop)
-            {
-                selectionStop = false;
-                return;
-            }
-            if (GenreSelectedIndex > 0)
-            {
-                selectionStop = true;
-                GenreSelectedIndex = 0;
-            }
-        }
 
         public void OKBTClick()
         {
