@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyousetukaGetterLib
 {
-    class JsonUrlManager
+    public class JsonUrlManager
     {
         private const string defaultJsonUrl = "http://api.syosetu.com/novelapi/api/?out=json";
         private int limNumber = 20;
@@ -14,12 +14,21 @@ namespace SyousetukaGetterLib
         private int stNumber = 1;
         private string st;
         private string order = "";
+        private string genreItems = "";
+        private string secondGenreItems = "";
+        private string searchWordText = "";
+        private string titleIsChecked = "";
+        private string storyIsChecked = "";
+        private string keywordIsChecked = "";
+        private string writerIsChecked = "";
+        private string userIDText = "";
+        private string nCodeText = "";
 
         public string JsonUrl
         {
             get
             {
-                return defaultJsonUrl + lim + st + order;
+                return defaultJsonUrl + lim + st + order + genreItems + secondGenreItems + searchWordText + titleIsChecked + storyIsChecked + keywordIsChecked + writerIsChecked + userIDText + nCodeText;
             }
         }
 
@@ -109,13 +118,212 @@ namespace SyousetukaGetterLib
             {
                 case Order.basic:
                     this.order = "";
-                    break;
+                    return;
                 default:
                     this.order = "&order=" + order;
-                    break;
+                    return;
             }
+        }
+        /*
+         * 大ジャンル指定
+         * 1: 恋愛
+         * 2: ファンタジー
+         * 3: 文芸
+         * 4: SF
+         * 98: ノンジャンル
+         * 99: その他
+         * 
+         * */
+        public void SetGenreItems(string id)
+        {
+            int select = int.Parse(id);
+            switch (select)
+            {
+                case 0:
+                    genreItems = "";
+                    return;
+                default:
+                    SetBiggenre(id);
+                    return;
+            }
+        }
+        /*
+         * 大ジャンル指定したurlを設定
+         * 
+         * */
+        private void SetBiggenre(string id)
+        {
+            genreItems = "&biggenre=" + id;
             return;
         }
+        /*
+         * ジャンル指定
+         * 101: 異世界[恋愛]
+         * 102: 現実世界[恋愛]
+         * 201: ハイファンタジー[ファンタジー]
+         * 202: ローファンタジー〔ファンタジー〕
+         * 301: 純文学〔文芸〕
+         * 302: ヒューマンドラマ〔文芸〕
+         * 303: 歴史〔文芸〕
+         * 304: 推理〔文芸〕
+         * 305: ホラー〔文芸〕
+         * 306: アクション〔文芸〕
+         * 307: コメディー〔文芸〕
+         * 401: VRゲーム〔SF〕
+         * 402: 宇宙〔SF〕
+         * 403: 空想科学〔SF〕
+         * 404: パニック〔SF〕
+         * 9901: 童話〔その他〕
+         * 9902: 童話〔その他〕
+         * 9903: エッセイ〔その他〕
+         * 9904: リプレイ〔その他〕
+         * 9801: ノンジャンル〔ノンジャンル〕
+         * 9999: その他〔その他〕
+         * 
+         * */
+        public void SetSecondGenreItems(string id)
+        {
+            int select = int.Parse(id);
+            switch (select)
+            {
+                case 0:
+                    secondGenreItems = "";
+                    return;
+                default:
+                    SetGenre(id);
+                    return;
+            }
+        }
+        /*
+         * ジャンル指定したurlを設定
+         * 
+         * */
+        private void SetGenre(string id)
+        {
+            secondGenreItems = "&genre=" + id;
+            return;
+        }
+        /*
+         * 検索単語を設定する。
+         * 
+         * */
+        public void SetSearchWordText(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+            {
+                searchWordText = "";
+                return;
+            }
+            else
+            {
+                searchWordText = "&word=" + word;
+                return;
+            }
+        }
+        /*
+         * タイトルを検索するかどうかを決定する
+         * 
+         * 
+         * */
+        public void SetTitleIsChecked(bool check)
+        {
+            if (check)
+            {
+                titleIsChecked = "&title=1";
+                return;
+            }
+            else
+            {
+                titleIsChecked = "";
+                return;
+            }
+        }
+        /*
+         * あらすじを検索するかどうかを決定する
+         * 
+         * */
+        public void SetStoryIsChecked(bool check)
+        {
+            if (check)
+            {
+                storyIsChecked = "&ex=1";
+                return;
+            }
+            else
+            {
+                storyIsChecked = "";
+                return;
+            }
+        }
+        /*
+         * キーワードを検索するかどうかを決定する
+         * 
+         * */
+        public void SetKeywordIsChecked(bool check)
+        {
+            if (check)
+            {
+                keywordIsChecked = "&keyword=1";
+                return;
+            }
+            else
+            {
+                keywordIsChecked = "";
+                return;
+            }
+        }
+        /*
+         * 作者名を検索するかどうかを決定する
+         * 
+         * */
+        public void SetWriterIsChecked(bool check)
+        {
+            if (check)
+            {
+                writerIsChecked = "&wname=1";
+                return;
+            }
+            else
+            {
+                writerIsChecked = "";
+                return;
+            }
+        }
+        /*
+         * ユーザIDを検索する
+         * 
+         * */
+        public void SetUserIDText(string userID)
+        {
+            if (string.IsNullOrEmpty(userID))
+            {
+                userIDText = "";
+                return;
+            }
+            else
+            {
+                userIDText = "&userid=" + userID;
+                return;
+            }
+        }
+        /*
+         * nCodeで検索する
+         * 
+         * */
+        public void SetNCodeText(string nCode)
+        {
+            if (string.IsNullOrEmpty(nCode))
+            {
+                nCodeText = "";
+                return;
+            }
+            else
+            {
+                nCodeText = "&ncode=" + nCode;
+                return;
+            }
+        }
+
 
     }
 }

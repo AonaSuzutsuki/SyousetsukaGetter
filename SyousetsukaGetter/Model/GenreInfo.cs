@@ -21,8 +21,8 @@ namespace SyousetsukaGetter.Model
             new GenreInfo() { ID = "2", Name = "ファンタジー" },
             new GenreInfo() { ID = "3", Name = "文芸" },
             new GenreInfo() { ID = "4", Name = "SF" },
-            new GenreInfo() { ID = "98", Name = "その他" },
-            new GenreInfo() { ID = "99", Name = "ノンジャンル" },
+            new GenreInfo() { ID = "99", Name = "その他" },
+            new GenreInfo() { ID = "98", Name = "ノンジャンル" },
         };
 
         public static readonly Dictionary<string, string> BigGenresDictionary = new Dictionary<string, string>()
@@ -32,8 +32,8 @@ namespace SyousetsukaGetter.Model
             {"2", "ファンタジー"},
             {"3", "文芸"},
             {"4", "SF"},
-            {"98", "その他"},
-            {"99", "ノンジャンル"},
+            {"99", "その他"},
+            {"98", "ノンジャンル"},
         };
 
         public static readonly GenreInfo[] Genres =
