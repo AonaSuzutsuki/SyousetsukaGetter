@@ -111,7 +111,7 @@ namespace SyousetukaGetterLib
                     this.order = "";
                     break;
                 default:
-                    this.order = "&order" + order;
+                    this.order = "&order=" + order;
                     break;
             }
             return;

@@ -30,6 +30,14 @@ namespace SyousetukaGetterLib
                 return defaultNovelUrl + "/" + NCode + "/";
             }
         }
+        /*
+         * コンストラクタ
+         * 
+         * */
+        public NovelUrlManager(JsonUrlManager url)
+        {
+            json = url;
+        }
 
         /*
         * ダウンロードする小説のNcodeとpage数を設定しUrlを決定する。

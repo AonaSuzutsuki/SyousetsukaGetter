@@ -10,13 +10,22 @@ namespace SyousetukaGetterLib
 {
     class PageDownloader
     {
-        private NovelUrlManager novelUrl = new NovelUrlManager();
+        private NovelUrlManager novelUrl;
 
         public Dictionary<string, List<string>> NovelText
         {
             get;
             private set;
         } = new Dictionary<string, List<string>>();
+
+        /*
+         * コンストラクタ
+         * 
+         * */
+        public PageDownloader(JsonUrlManager jsonUrl)
+        {
+            novelUrl = new NovelUrlManager(jsonUrl);
+        }
 
         /*
          * 小説のダウンロードを行う。
@@ -31,7 +40,7 @@ namespace SyousetukaGetterLib
                 string html = GetHtml(url);
                 text.Add(AnalysisHtml(html));
             }
-            NovelText.Add(novelUrl.NCode, text);
+            NovelText.Add(novelUrl.NCode,text);
             return;
         }
         /*
@@ -70,8 +79,7 @@ namespace SyousetukaGetterLib
          * */
          public void GetText()
          {
-            List<string> texts = NovelText[novelUrl.NCode];
-            foreach(string text in texts)
+            foreach(string text in NovelText[novelUrl.NCode])
             {
                 Console.WriteLine(text); //本来は本文をダウンロードするためのメソッドを実装する。
                 Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++");
