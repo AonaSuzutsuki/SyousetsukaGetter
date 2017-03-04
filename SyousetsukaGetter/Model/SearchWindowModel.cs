@@ -13,7 +13,6 @@ namespace SyousetsukaGetter.Model
         ViewModel.SearchWindowViewModel vm;
 
         public SearchWindowModel(ViewModel.SearchWindowViewModel vm)
-<<<<<<< HEAD
         {
             this.vm = vm;
         }
@@ -26,20 +25,6 @@ namespace SyousetsukaGetter.Model
 
         public void Search()
         {
-=======
-        {
-            this.vm = vm;
-        }
-
-        // 検索済み全書籍データ
-        IList<NovelInfo> novels = new List<NovelInfo>();
-        // 保存用書籍データ
-        IList<NovelInfo> saveNovels = new List<NovelInfo>();
-
-        
-        public void Search()
-        {
->>>>>>> 640643d2ba65f9428c1e7dcca03b397c2e700de5
             var url = SetJsonUrl();
 
             var jsonLoader = new JsonLoader(url);
@@ -78,7 +63,6 @@ namespace SyousetsukaGetter.Model
         private string SetJsonUrl()
         {
             var url = new JsonUrlManager();
-<<<<<<< HEAD
             string genreItemsID = vm.GenreItems[vm.GenreSelectedIndex].ID;
             var secondGenreItemsID = vm.SecondGenreItems[vm.SecondGenreSelectedIndex].ID;
             string word = vm.SearchWordText;
@@ -86,22 +70,6 @@ namespace SyousetsukaGetter.Model
             var storyCheck = vm.StoryIsChecked;
             var keyCheck = vm.KeywordIsChecked;
             var writerCheck = vm.WriterIsChecked;
-=======
-            string id = vm.GenreItems[vm.GenreSelectedIndex].ID;
-            url.SetGenreItems(id);
-            id = vm.SecondGenreItems[vm.GenreSelectedIndex].ID;
-            url.SetSecondGenreItems(id);
-            string word = vm.SearchWordText;
-            url.SetSearchWordText(word);
-            bool check = vm.TitleIsChecked;
-            url.SetTitleIsChecked(check);
-            check = vm.StoryIsChecked;
-            url.SetStoryIsChecked(check);
-            check = vm.KeywordIsChecked;
-            url.SetKeywordIsChecked(check);
-            check = vm.WriterIsChecked;
-            url.SetWriterIsChecked(check);
->>>>>>> 640643d2ba65f9428c1e7dcca03b397c2e700de5
             string userID = vm.UserIDText;
             string nCode = vm.NCodeText;
 
@@ -142,21 +110,12 @@ namespace SyousetsukaGetter.Model
 
         public void SaveTo()
         {
-<<<<<<< HEAD
-            DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelDirPath);
-=======
             DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelListDirPath);
->>>>>>> 640643d2ba65f9428c1e7dcca03b397c2e700de5
             if (!di.Exists) di.Create();
 
             foreach (NovelInfo novelInfo in saveNovels)
             {
                 var novelDic = novelInfo.GetValues();
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 640643d2ba65f9428c1e7dcca03b397c2e700de5
                 using (FileStream fs = new FileStream(di.FullName + @"\" + novelInfo.NCode, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
                 {
                     var writer = new KimamaLib.XMLWrapper.Writer();
