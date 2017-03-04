@@ -34,11 +34,24 @@ namespace KimamaLib.XMLWrapper
 
             _xRoot.AppendChild(xmeta);
         }
-        /// <summary>
-        /// Add an element.
-        /// </summary>
-        /// <param name="elementName">Element name.</param>
-        /// <param name="attributeInfo">Attribute information.</param>
+        public void AddElement(string elementName, AttributeInfo[] attributeInfos, string value)
+        {
+            XmlElement xmeta = _xDocument.CreateElement(elementName);
+            foreach (AttributeInfo attributeInfo in attributeInfos)
+            {
+                xmeta.SetAttribute(attributeInfo.Name, attributeInfo.Value);
+            }
+            xmeta.InnerText = value;
+
+            _xRoot.AppendChild(xmeta);
+        }
+        public void AddElement(string elementName, AttributeInfo attributeInfo)
+        {
+            XmlElement xmeta = _xDocument.CreateElement(elementName);
+            xmeta.SetAttribute(attributeInfo.Name, attributeInfo.Value);
+
+            _xRoot.AppendChild(xmeta);
+        }
         public void AddElement(string elementName, AttributeInfo attributeInfo, string value)
         {
             XmlElement xmeta = _xDocument.CreateElement(elementName);
