@@ -87,6 +87,11 @@
                             <StackPanel Grid.Column="0">
                                 <Label Content="ジャンル" />
                                 <ComboBox ItemsSource="{Binding GenreItems}" SelectedIndex="{Binding GenreSelectedIndex}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding GenreSelectionChanged}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -99,6 +104,11 @@
                             <StackPanel Grid.Column="2">
                                 <Label Content="第二ジャンル" />
                                 <ComboBox ItemsSource="{Binding SecondGenreItems}" SelectedIndex="{Binding SecondGenreSelectedIndex}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SecondGenreSelectionChanged}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock>

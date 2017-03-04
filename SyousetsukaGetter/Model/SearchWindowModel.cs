@@ -132,11 +132,6 @@ namespace SyousetsukaGetter.Model
                     writer.Write(fs);
                 }
             }
-
-            di = new DirectoryInfo(SharedData.SavelNovelDirPath);
-            if (!di.Exists) di.Create();
-
-
         }
     }
 }
