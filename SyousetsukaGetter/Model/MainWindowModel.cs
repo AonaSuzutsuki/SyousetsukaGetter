@@ -94,7 +94,16 @@ namespace SyousetsukaGetter.Model
                 }
                 var novelDownloader = new SyousetukaGetterLib.NovelDownloader(ncode, novelInfo.GeneralAllNo, nType);
                 novelDownloader.DownloadNovel();
-                var titleList = novelDownloader.Title[ncode];
+                List<string> titleList;
+                if (nType)
+                {
+                    titleList = novelDownloader.Title[ncode];
+                }
+                else
+                {
+                    titleList = new List<string>();
+                    titleList.Add("");
+                }
                 var textList = novelDownloader.NovelText[ncode];
 
                 novelInfo.Titles = titleList;
