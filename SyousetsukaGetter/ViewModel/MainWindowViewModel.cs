@@ -67,6 +67,7 @@ namespace SyousetsukaGetter.ViewModel
         {
             NovelListItem.Clear();
             var novelList = model.NovelListLoad();
+            if (novelList == null) return;
 
             foreach (var novelInfo in novelList)
             {

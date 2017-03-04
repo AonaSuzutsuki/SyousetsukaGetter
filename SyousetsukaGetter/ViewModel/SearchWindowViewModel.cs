@@ -73,6 +73,15 @@ namespace SyousetsukaGetter.ViewModel
         public ObservableCollection<SearchListDataInfo> SearchListData { set; get; } = new ObservableCollection<SearchListDataInfo>();
         public ObservableCollection<GenreInfo> GenreItems { set; get; }
         public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
+
+        /// <summary>
+        /// 検索単語
+        /// </summary>
+        public string SearchWordText
+        {
+            set;
+            get;
+        }
         #endregion
 
         #region EventProperties

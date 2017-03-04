@@ -67,7 +67,7 @@
 
                         <StackPanel>
                             <Label Content="検索単語" />
-                            <TextBox />
+                            <TextBox Text="{Binding SearchWordText}" />
                         </StackPanel>
 
                         <StackPanel>
