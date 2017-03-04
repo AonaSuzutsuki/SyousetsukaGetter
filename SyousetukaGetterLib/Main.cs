@@ -12,11 +12,30 @@ namespace SyousetukaGetterLib
     {
         static void Main(string[] args)
         {
-            var jsonUrl = new JsonUrlManager();
-            jsonUrl.SetOrder(JsonUrlManager.Order.favnovelcnt);
-            var tmp = new PageDownloader(jsonUrl);
-            tmp.StartDownload(1);
-            tmp.GetText();
+            var tmp = new NovelDownloader("n9669bk", 1, true);
+            tmp.DownloadNovel();
+            tmp.SetData("n6705dv", 1, false);
+            tmp.DownloadNovel();
+            foreach (string text in tmp.NovelText["n9669bk"])
+            {
+                foreach (string title in tmp.Title["n9669bk"])
+                {
+                    Console.WriteLine(title);
+                    Console.WriteLine("+++++++++++++++++++++++++++++++");
+                    Console.WriteLine(text);
+                    Console.WriteLine("********************************");
+                }
+            }
+            //foreach (string text in tmp.noveltext["n6705dv"])
+            //{
+            //    foreach (string title in tmp.title["n2627t"])
+            //    {
+            //        console.writeline(title);
+            //        console.writeline("+++++++++++++++++++++++++++++++");
+            //        console.writeline(text);
+            //        console.writeline("********************************");
+            //    }
+            //}
             Console.Read();
         }
     }
