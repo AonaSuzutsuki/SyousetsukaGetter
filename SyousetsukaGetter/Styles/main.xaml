@@ -1184,7 +1184,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListBox">
                     <Border Name="Border" BorderBrush="{StaticResource ListBorderColor}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
-                        <ScrollViewer Margin="0,0,0,0" Focusable="false">
+                        <ScrollViewer Margin="0,0,0,0" Focusable="false" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
                             <StackPanel Margin="2" IsItemsHost="True" />
                         </ScrollViewer>
                     </Border>
@@ -1216,7 +1216,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListBox">
                     <Border Name="Border" BorderBrush="{StaticResource ListBorderColor}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
-                        <ScrollViewer Margin="0,0,0,0" Focusable="false">
+                        <ScrollViewer Margin="0,0,0,0" Focusable="false" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
                             <StackPanel Margin="2" IsItemsHost="True" />
                         </ScrollViewer>
                     </Border>
@@ -1393,7 +1393,9 @@
                 <ControlTemplate TargetType="ScrollViewer">
                     <Grid>
                         <Grid x:Name="EmptyGrid" Background="Transparent" Width="{StaticResource ScrollBarWidth}" Height="{StaticResource ScrollBarHeight}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                        
                         <!--{StaticResource MainBackgroundBrush}-->
+                        
                         <Grid Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -1405,7 +1407,7 @@
                             </Grid.RowDefinitions>
                             <DockPanel Margin="{TemplateBinding Padding}">
                                 <ScrollViewer DockPanel.Dock="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Focusable="False">
-                                    <GridViewHeaderRowPresenter
+                                    <!--<GridViewHeaderRowPresenter
                                     Margin="2,0,2,0"
                                     Columns="{Binding Path=TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
                                     ColumnHeaderContainerStyle="{Binding Path=TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
@@ -1414,7 +1416,7 @@
                                     AllowsColumnReorder="{Binding Path=TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
                                     ColumnHeaderContextMenu="{Binding Path=TemplatedParent.View.ColumnHeaderContextMenu, RelativeSource={RelativeSource TemplatedParent}}"
                                     ColumnHeaderToolTip="{Binding Path=TemplatedParent.View.ColumnHeaderToolTip, RelativeSource={RelativeSource TemplatedParent}}"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>-->
                                 </ScrollViewer>
                                 <ScrollContentPresenter Name="PART_ScrollContentPresenter" KeyboardNavigation.DirectionalNavigation="Local" CanContentScroll="{TemplateBinding CanContentScroll}"/>
                             </DockPanel>

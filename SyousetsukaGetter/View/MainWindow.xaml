@@ -33,7 +33,7 @@
 
     <Grid Style="{DynamicResource ResourceKey=BackgroundGrid}">
         <Border Name="AroundBorder" BorderBrush="{DynamicResource AroundBorderColor}" BorderThickness="1" />
-        
+
         <Grid Margin="{Binding MainWindowMargin}">
             <StackPanel Orientation="Horizontal" Margin="5,0,0,0"
                         HorizontalAlignment="left"
@@ -79,7 +79,7 @@
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Width="25" Height=" 25" Style="{DynamicResource PlusBT}" Command="{Binding AddBTClick}" />
                     </StackPanel>
-                    <ListBox Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding NovelListItem}" Style="{DynamicResource MainListBox}">
+                    <ListBox Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding NovelListItem}" Style="{DynamicResource MainListBox}" SelectedIndex="{Binding NovelListSelectedIndex}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding NovelListSelectionChanged}" />
@@ -88,7 +88,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Width="{Binding ActualWidth, ElementName=parentElementName}">
-                                    <TextBlock TextWrapping="WrapWithOverflow">
+                                    <TextBlock TextWrapping="Wrap">
                                         <Run Text="{Binding Title}" />
                                     </TextBlock>
                                 </StackPanel>
@@ -104,21 +104,30 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Button Content="←" Width="30" Margin="5,0,0,0" Style="{DynamicResource FlatButton}" />
+                        <Button Content="←" IsEnabled="{Binding PreviousBTIsEnabled}" Width="30" Height="25" Margin="5,0,0,0" Style="{DynamicResource FlatButton}" Command="{Binding PreviousPageBTClick}" />
+                        <Button Content="→" IsEnabled="{Binding NextBTIsEnabled}" Width="30" Height="25" Margin="5,0,0,0" Style="{DynamicResource FlatButton}" Command="{Binding NextPageBTClick}" />
+                        <Label Content="{Binding CurrentPage}" />
+                        <Label Content="/" />
+                        <Label Content="{Binding MaxPage}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Content="Download" Style="{DynamicResource DownloadBT}" />
-                    </StackPanel>
+
+                    <Grid HorizontalAlignment="Center">
+                        <Label Content="{Binding SubTitleText}" />
+                    </Grid>
                     
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Download" Style="{DynamicResource DownloadBT}" Command="{Binding DownloadBTClick}" />
+                    </StackPanel>
+
                     <Grid Grid.Row="1" Margin="10">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                            <TextBlock Text="{Binding OriginalText}" Style="{DynamicResource ExTextBlock}" />
+                        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                            <TextBlock Text="{Binding OriginalText}" TextWrapping="WrapWithOverflow" Style="{DynamicResource ExTextBlock}" />
                         </ScrollViewer>
                     </Grid>
                 </Grid>
 
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Window>

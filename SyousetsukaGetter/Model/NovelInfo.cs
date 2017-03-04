@@ -8,8 +8,8 @@ namespace SyousetsukaGetter.Model
 {
     public enum NovelType
     {
-        Serialization,
-        Short,
+        Serialization = 1,
+        Short = 2,
     }
     public class NovelInfo
     {
@@ -22,6 +22,9 @@ namespace SyousetsukaGetter.Model
         public string Genre { set; get; }
         public int GeneralAllNo { set; get; }
         public NovelType NType { set; get; }
+
+        public List<string> Titles { set; get; } = new List<string>();
+        public List<string> Texts { set; get; } = new List<string>();
 
         public Dictionary<string, string> GetValues()
         {

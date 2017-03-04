@@ -77,7 +77,7 @@ namespace SyousetsukaGetter.Model
 
         public void SaveTo()
         {
-            DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelDirPath);
+            DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelListDirPath);
             if (!di.Exists) di.Create();
 
             foreach (NovelInfo novelInfo in saveNovels)
@@ -101,6 +101,11 @@ namespace SyousetsukaGetter.Model
                     writer.Write(fs);
                 }
             }
+
+            di = new DirectoryInfo(SharedData.SavelNovelDirPath);
+            if (!di.Exists) di.Create();
+
+
         }
     }
 }

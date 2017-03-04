@@ -21,7 +21,7 @@ namespace SyousetsukaGetter.Model
 
         public IList<NovelInfo> NovelListLoad()
         {
-            DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelDirPath);
+            DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelListDirPath);
             if (!di.Exists) return null;
 
             novels.Clear();
@@ -61,6 +61,71 @@ namespace SyousetsukaGetter.Model
 
             if (novels.Count <= 0) return null;
             return novels;
+        }
+
+        public void LoadNovel(NovelInfo novelInfo, bool isForceDownload = false)
+        {
+            if (novelInfo == null) return;
+
+            DirectoryInfo di = new DirectoryInfo(SharedData.SavelNovelDirPath);
+            if (!di.Exists) di.Create();
+            FileInfo fi = new FileInfo(di.FullName + @"\" + novelInfo.NCode);
+            if (fi.Exists && !isForceDownload)
+            {
+                using (FileStream fs = new FileStream(fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    var xmlReader = new KimamaLib.XMLWrapper.Reader(fs);
+                    int count = int.Parse(xmlReader.GetAttribute("count", "//novels/item"));
+                    var titleList = xmlReader.GetAttributes("subtitle", "//novels/novel");
+                    var textList = xmlReader.GetValues("//novels/novel");
+
+                    novelInfo.Titles = titleList;
+                    novelInfo.Texts = textList;
+                }
+            }
+            else
+            {
+                string ncode = novelInfo.NCode;
+
+                bool nType = false;
+                if (novelInfo.NType == NovelType.Serialization)
+                {
+                    nType = true;
+                }
+                var novelDownloader = new SyousetukaGetterLib.NovelDownloader(ncode, novelInfo.GeneralAllNo, nType);
+                novelDownloader.DownloadNovel();
+                var titleList = novelDownloader.Title[ncode];
+                var textList = novelDownloader.NovelText[ncode];
+
+                novelInfo.Titles = titleList;
+                novelInfo.Texts = textList;
+
+                int count = titleList.Count < textList.Count ? titleList.Count : textList.Count;
+
+                using (FileStream fs = new FileStream(fi.FullName, FileMode.Create, FileAccess.Write, FileShare.Read))
+                {
+                    var xmlWriter = new KimamaLib.XMLWrapper.Writer();
+                    xmlWriter.SetRoot("novels");
+
+                    var attribute = new KimamaLib.XMLWrapper.AttributeInfo()
+                    {
+                        Name = "count",
+                        Value = count.ToString()
+                    };
+
+                    xmlWriter.AddElement("item", attribute);
+                    for (int i = 0; i < count; ++i)
+                    {
+                        var attributes = new KimamaLib.XMLWrapper.AttributeInfo[2]
+                        {
+                            new KimamaLib.XMLWrapper.AttributeInfo() { Name = "page", Value = (i + 1).ToString() },
+                            new KimamaLib.XMLWrapper.AttributeInfo() { Name = "subtitle", Value = titleList[i] },
+                        };
+                        xmlWriter.AddElement("novel", attributes, textList[i]);
+                    }
+                    xmlWriter.Write(fs);
+                }
+            }
         }
     }
 }

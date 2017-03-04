@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace SyousetukaGetterLib
 {
-    class PageDownloader
+    public class PageDownloader
     {
         private NovelUrlManager novelUrl;
 

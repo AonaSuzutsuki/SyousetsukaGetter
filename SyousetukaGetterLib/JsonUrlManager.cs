@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyousetukaGetterLib
 {
-    class JsonUrlManager
+    public class JsonUrlManager
     {
         private const string defaultJsonUrl = "http://api.syosetu.com/novelapi/api/?out=json";
         private int limNumber = 20;

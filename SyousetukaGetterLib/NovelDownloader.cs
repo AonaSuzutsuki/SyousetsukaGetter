@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SyousetukaGetterLib
 {
-    class NovelDownloader
+    public class NovelDownloader
     {
         private const string defaultNovelUrl = "http://ncode.syosetu.com"; //小説の本文のurl
         /*
@@ -104,16 +104,16 @@ namespace SyousetukaGetterLib
          * */
         public void DownloadNovel()
         {
-            var urls = GetNovelUrl();
+            var urls = getNovelUrl();
             var text = new List<string>();
             var title = new List<string>();
             foreach (string url in urls)
             {
-                string html = GetHtml(url);
-                text.Add(AnalysisHtml(html));
+                string html = getHtml(url);
+                text.Add(analysisHtml(html));
                 if (Juge)
                 {
-                    title.Add(AnalysisHtmTitlel(html));
+                    title.Add(analysisHtmTitlel(html));
                 }
             }
             NovelText.Add(Ncode, text);
@@ -128,12 +128,15 @@ namespace SyousetukaGetterLib
          * 小説本文のUrlを手に入れる。
          * 
          * */
-        private List<string> GetNovelUrl()
+        private List<string> getNovelUrl()
         {
             var urls = new List<string>();
             if (Juge)
             {
-                urls.Add(NovelUrl + Page);
+                for (int page = 1; page <= Page; ++page)
+                {
+                    urls.Add(NovelUrl + page);
+                }
             }
             else
             {
@@ -145,7 +148,7 @@ namespace SyousetukaGetterLib
          * Htmlを手に入れる
          * 
          * */
-        private string GetHtml(string url)
+        private string getHtml(string url)
         {
             var wc = new WebClient();
             var st = wc.OpenRead(url);
@@ -160,7 +163,7 @@ namespace SyousetukaGetterLib
          * Htmlのデータを解析し本文を取得する。
          * 
          * */
-        private string AnalysisHtml(string html)
+        private string analysisHtml(string html)
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
             doc.OptionAutoCloseOnEnd = false;  //最後に自動で閉じる（？）
@@ -176,7 +179,7 @@ namespace SyousetukaGetterLib
          * Htmlのデータを解析しタイトルを取得する。
          * 
          * */
-        private string AnalysisHtmTitlel(string html)
+        private string analysisHtmTitlel(string html)
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
             doc.OptionAutoCloseOnEnd = false;  //最後に自動で閉じる（？）
