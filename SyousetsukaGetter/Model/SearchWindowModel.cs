@@ -1,28 +1,13 @@
 ﻿using SyousetukaGetterLib;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SyousetsukaGetter.Model
 {
-    public class NovelAuthorInfo
-    {
-        public string UseId { set; get; }
-        public string Writer { set; get; }
-    }
-    public class NovelInfo
-    {
-        public string NCode { set; get; }
-        public string Title { set; get; }
-        public NovelAuthorInfo Author { set; get; }
-        public string Story { set; get; }
-        public string BigGenre { set; get; }
-        public string Genre { set; get; }
-        public int GeneralAllNo { set; get; }
-    }
-
     public class SearchWindowModel
     {
         ViewModel.SearchWindowViewModel vm;
@@ -48,9 +33,13 @@ namespace SyousetsukaGetter.Model
                 {
                     NCode = node["ncode"],
                     Title = node["title"],
+                    UseId = node["userid"],
+                    Writer = node["writer"],
+                    Story = node["story"],
                     BigGenre = GenreInfos.BigGenresDictionary[node["biggenre"]],
                     Genre = GenreInfos.GenresDictionary[node["genre"]],
                     GeneralAllNo = int.Parse(node["general_all_no"]),
+                    NType = (NovelType)int.Parse(node["novel_type"]),
                 };
                 novels.Add(novel);
             }
@@ -82,6 +71,34 @@ namespace SyousetsukaGetter.Model
                 {
                     saveNovels.RemoveAt(item.i);
                     return;
+                }
+            }
+        }
+
+        public void SaveTo()
+        {
+            DirectoryInfo di = new DirectoryInfo(SharedData.SavedNovelDirPath);
+            if (!di.Exists) di.Create();
+
+            foreach (NovelInfo novelInfo in saveNovels)
+            {
+                var novelDic = novelInfo.GetValues();
+                
+                using (FileStream fs = new FileStream(di.FullName + @"\" + novelInfo.NCode, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+                {
+                    var writer = new KimamaLib.XMLWrapper.Writer();
+                    writer.SetRoot("novels");
+                    foreach (KeyValuePair<string, string> pair in novelDic)
+                    {
+                        var attribute = new KimamaLib.XMLWrapper.AttributeInfo()
+                        {
+                            Name = "name",
+                            Value = pair.Key
+                        };
+                        writer.AddElement("item", attribute, pair.Value);
+                    }
+
+                    writer.Write(fs);
                 }
             }
         }

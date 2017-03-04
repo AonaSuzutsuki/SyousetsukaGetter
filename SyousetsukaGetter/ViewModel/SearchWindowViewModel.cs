@@ -78,6 +78,7 @@ namespace SyousetsukaGetter.ViewModel
         #region EventProperties
         public ICommand PlusBTClick { private set; get; }
         public ICommand SearchBTClick { private set; get; }
+        public ICommand OKBT_Click { private set; get; }
         #endregion
 
         public SearchWindowViewModel(Window view) : base(view)
@@ -91,6 +92,7 @@ namespace SyousetsukaGetter.ViewModel
 
             SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
+            OKBT_Click = new RelayCommand(OKBTClick);
         }
 
         public void SearchBT_Click()
@@ -120,6 +122,12 @@ namespace SyousetsukaGetter.ViewModel
 
                 model.RemoveSaveNodel(id);
             }
+        }
+
+        public void OKBTClick()
+        {
+            model.SaveTo();
+            view.Close();
         }
     }
 }

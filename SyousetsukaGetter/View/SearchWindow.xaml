@@ -249,7 +249,7 @@
                             <ColumnDefinition Width="5" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="OK" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
+                        <Button Grid.Column="0" Content="OK" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding OKBT_Click}" />
                         <Button Grid.Column="2" Content="キャンセル" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding MainWindowCloseBTClick}" />
                     </Grid>
                     
