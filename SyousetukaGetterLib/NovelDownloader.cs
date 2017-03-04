@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SyousetukaGetterLib
 {
-    class NovelDownloader
+    public class NovelDownloader
     {
         private const string defaultNovelUrl = "http://ncode.syosetu.com"; //小説の本文のurl
         /*

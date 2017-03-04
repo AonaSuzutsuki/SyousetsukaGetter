@@ -87,24 +87,24 @@ namespace SyousetsukaGetter.ViewModel
         {
             set;
             get;
-        }
+        } = "";
 
         /// <summary>
         /// タイトルを検索対象にする
         /// </summary>
-        public bool? TitleIsChecked { set; get; } = true;
+        public bool TitleIsChecked { set; get; } = true;
         /// <summary>
         /// あらすじを検索対象にする
         /// </summary>
-        public bool? StoryIsChecked { set; get; } = true;
+        public bool StoryIsChecked { set; get; } = true;
         /// <summary>
         /// キーワードを検索対象にする
         /// </summary>
-        public bool? KeywordIsChecked { set; get; } = true;
+        public bool KeywordIsChecked { set; get; } = true;
         /// <summary>
         /// 作者を検索対象にする
         /// </summary>
-        public bool? WriterIsChecked { set; get; } = true;
+        public bool WriterIsChecked { set; get; } = true;
 
         /// <summary>
         /// ジャンルリストで指定されたインデックス
@@ -118,11 +118,11 @@ namespace SyousetsukaGetter.ViewModel
         /// <summary>
         /// ユーザーIDの入力文字
         /// </summary>
-        public string UserIDText { set; get; }
+        public string UserIDText { set; get; } = "";
         /// <summary>
         /// ncodeの入力文字
         /// </summary>
-        public string NCodeText { set; get; }
+        public string NCodeText { set; get; } = "";
 
         /// <summary>
         /// 検索対象数の入力文字

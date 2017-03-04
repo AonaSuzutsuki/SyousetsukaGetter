@@ -25,7 +25,9 @@ namespace SyousetsukaGetter.Model
         
         public void Search()
         {
-            var jsonLoader = new JsonLoader("test.txt", true);
+            var url = SetJsonUrl();
+
+            var jsonLoader = new JsonLoader(url);
             for (int i = 1; i < jsonLoader.Nodes.Count; ++i)
             {
                 var node = jsonLoader.Nodes[i];
@@ -56,6 +58,35 @@ namespace SyousetsukaGetter.Model
                 };
                 vm.SearchListData.Add(searchListDataInfo);
             }
+        }
+
+        private string SetJsonUrl()
+        {
+            var url = new JsonUrlManager();
+            string id = vm.GenreItems[vm.GenreSelectedIndex].ID;
+            url.SetGenreItems(id);
+            id = vm.SecondGenreItems[vm.GenreSelectedIndex].ID;
+            url.SetSecondGenreItems(id);
+            string word = vm.SearchWordText;
+            url.SetSearchWordText(word);
+            bool check = vm.TitleIsChecked;
+            url.SetTitleIsChecked(check);
+            check = vm.StoryIsChecked;
+            url.SetStoryIsChecked(check);
+            check = vm.KeywordIsChecked;
+            url.SetKeywordIsChecked(check);
+            check = vm.WriterIsChecked;
+            url.SetWriterIsChecked(check);
+            string userID = vm.UserIDText;
+            url.SetUserIDText(userID);
+            string nCode = vm.NCodeText;
+            url.SetNCodeText(nCode);
+
+           vm.SearchNumText = "3"; //テスト用
+
+            int lim = int.Parse(vm.SearchNumText);
+            url.SetLim(lim);
+            return url.JsonUrl;
         }
 
         public void AddSaveNodel(int id)
