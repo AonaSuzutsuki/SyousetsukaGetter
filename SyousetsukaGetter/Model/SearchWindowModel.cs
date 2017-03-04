@@ -22,7 +22,7 @@ namespace SyousetsukaGetter.Model
         // 保存用書籍データ
         IList<NovelInfo> saveNovels = new List<NovelInfo>();
 
-        
+
         public void Search()
         {
             var url = SetJsonUrl();
@@ -63,29 +63,31 @@ namespace SyousetsukaGetter.Model
         private string SetJsonUrl()
         {
             var url = new JsonUrlManager();
-            string id = vm.GenreItems[vm.GenreSelectedIndex].ID;
-            url.SetGenreItems(id);
-            id = vm.SecondGenreItems[vm.GenreSelectedIndex].ID;
-            url.SetSecondGenreItems(id);
+            string genreItemsID = vm.GenreItems[vm.GenreSelectedIndex].ID;
+            var secondGenreItemsID = vm.SecondGenreItems[vm.SecondGenreSelectedIndex].ID;
             string word = vm.SearchWordText;
-            url.SetSearchWordText(word);
-            bool check = vm.TitleIsChecked;
-            url.SetTitleIsChecked(check);
-            check = vm.StoryIsChecked;
-            url.SetStoryIsChecked(check);
-            check = vm.KeywordIsChecked;
-            url.SetKeywordIsChecked(check);
-            check = vm.WriterIsChecked;
-            url.SetWriterIsChecked(check);
+            bool titleCheck = vm.TitleIsChecked;
+            var storyCheck = vm.StoryIsChecked;
+            var keyCheck = vm.KeywordIsChecked;
+            var writerCheck = vm.WriterIsChecked;
             string userID = vm.UserIDText;
-            url.SetUserIDText(userID);
             string nCode = vm.NCodeText;
-            url.SetNCodeText(nCode);
 
-           vm.SearchNumText = "3"; //テスト用
+
+            vm.SearchNumText = "3"; //テスト用
 
             int lim = int.Parse(vm.SearchNumText);
             url.SetLim(lim);
+
+            url.SetGenreItems(genreItemsID);
+            url.SetSecondGenreItems(secondGenreItemsID);
+            url.SetSearchWordText(word);
+            url.SetTitleIsChecked(titleCheck);
+            url.SetStoryIsChecked(storyCheck);
+            url.SetKeywordIsChecked(keyCheck);
+            url.SetWriterIsChecked(writerCheck);
+            url.SetUserIDText(userID);
+            url.SetNCodeText(nCode);
             return url.JsonUrl;
         }
 
@@ -114,7 +116,7 @@ namespace SyousetsukaGetter.Model
             foreach (NovelInfo novelInfo in saveNovels)
             {
                 var novelDic = novelInfo.GetValues();
-                
+
                 using (FileStream fs = new FileStream(di.FullName + @"\" + novelInfo.NCode, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
                 {
                     var writer = new KimamaLib.XMLWrapper.Writer();

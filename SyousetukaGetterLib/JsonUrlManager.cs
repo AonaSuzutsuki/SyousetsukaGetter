@@ -221,6 +221,21 @@ namespace SyousetukaGetterLib
             }
         }
         /*
+         * 単語が入っているかどうかを判定
+         * 
+         * */
+        private bool wordChecker()
+        {
+            if (string.IsNullOrEmpty(searchWordText))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        /*
          * タイトルを検索するかどうかを決定する
          * 
          * 
@@ -229,8 +244,16 @@ namespace SyousetukaGetterLib
         {
             if (check)
             {
-                titleIsChecked = "&title=1";
-                return;
+                if(wordChecker())
+                {
+                    titleIsChecked = "&title=1";
+                    return;
+                }
+                else
+                {
+                    titleIsChecked = "";
+                    return;
+                }
             }
             else
             {
@@ -246,8 +269,16 @@ namespace SyousetukaGetterLib
         {
             if (check)
             {
-                storyIsChecked = "&ex=1";
-                return;
+                if (wordChecker())
+                {
+                    storyIsChecked = "&ex=1";
+                    return;
+                }
+                else
+                {
+                    storyIsChecked = "";
+                    return;
+                }
             }
             else
             {
@@ -263,8 +294,16 @@ namespace SyousetukaGetterLib
         {
             if (check)
             {
-                keywordIsChecked = "&keyword=1";
-                return;
+                if (wordChecker())
+                {
+                    keywordIsChecked = "&keyword=1";
+                    return;
+                }
+                else
+                {
+                    keywordIsChecked = "";
+                    return;
+                }
             }
             else
             {
@@ -280,8 +319,16 @@ namespace SyousetukaGetterLib
         {
             if (check)
             {
-                writerIsChecked = "&wname=1";
-                return;
+                if (wordChecker())
+                {
+                    writerIsChecked = "&wname=1";
+                    return;
+                }
+                else
+                {
+                    writerIsChecked = "";
+                    return;
+                }
             }
             else
             {
