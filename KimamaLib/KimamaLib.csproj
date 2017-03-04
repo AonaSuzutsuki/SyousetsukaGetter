@@ -49,8 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInfo.cs" />
+    <Compile Include="XMLWrapper\AttributeInfo.cs" />
     <Compile Include="iniwr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLWrapper\Reader.cs" />
+    <Compile Include="XMLWrapper\Writer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
