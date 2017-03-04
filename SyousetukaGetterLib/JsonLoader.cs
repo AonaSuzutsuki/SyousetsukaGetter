@@ -22,9 +22,9 @@ namespace SyousetukaGetterLib
             string json;
             if (localFile)
             {
-                using (FileStream fs = new FileStream(url, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var fs = new FileStream(url, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    using (StreamReader sr = new StreamReader(fs))
+                    using (var sr = new StreamReader(fs))
                     {
                         json = sr.ReadToEnd();
                     }
@@ -32,7 +32,7 @@ namespace SyousetukaGetterLib
             }
             else
             {
-                WebClient webClient = new WebClient();
+                var webClient = new WebClient();
                 byte[] data = webClient.DownloadData(url);
                 webClient.Dispose();
                 json = Encoding.UTF8.GetString(data);
@@ -49,10 +49,10 @@ namespace SyousetukaGetterLib
                         Encoding.UTF8.GetBytes(json), XmlDictionaryReaderQuotas.Max);
 
             var element = XElement.Load(xmlReader);
-            XmlDocument xmlLoader = new XmlDocument();
+            var xmlLoader = new XmlDocument();
             xmlLoader.LoadXml(element.ToString());
 
-            XmlNodeList itemNodes = xmlLoader.SelectNodes(xpath);
+            var itemNodes = xmlLoader.SelectNodes(xpath);
             foreach (XmlNode node in itemNodes)
             {
                 var dic = new Dictionary<string, string>();
