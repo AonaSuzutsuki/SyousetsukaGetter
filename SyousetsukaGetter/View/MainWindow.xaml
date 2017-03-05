@@ -45,7 +45,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Image>
-                <Label Content="SyousetsukaGetter" Style="{DynamicResource ResourceKey=StatTitle}" />
+                <Label Content="NarouReader" Style="{DynamicResource ResourceKey=StatTitle}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5"
                         HorizontalAlignment="Right"
@@ -58,6 +58,11 @@
                 <Menu IsMainMenu="True" Name="Menu" Height="25" Padding="3" VerticalAlignment="Top">
                     <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_FileBT, Mode=OneWay}">
                         <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_ExitBT, Mode=OneWay}" Name="MenuExitBT" Command="{Binding MainWindowCloseBTClick}" />
+                    </MenuItem>
+                    <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_ToolBT, Mode=OneWay}">
+                        <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_LanguageBT, Mode=OneWay}">
+                            <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_JapaneseBT, Mode=OneWay}" Command="{Binding MainWindowCloseBTClick}" />
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_HelpBT, Mode=OneWay}">
                         <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_VersionInfoBT, Mode=OneWay}" Command="{Binding MainWindowCloseBTClick}" />
@@ -88,12 +93,13 @@
                         </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Width="{Binding ActualWidth, ElementName=parentElementName}">
+                                <StackPanel>
                                     <TextBlock TextWrapping="Wrap">
                                         <Run Text="{Binding Title}" />
                                     </TextBlock>
                                     <TextBlock TextWrapping="Wrap" Foreground="#bbb">
-                                        <Run Text="作者 " />
+                                        <Run Text="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_Writer, Mode=OneWay}" />
+                                        <Run Text=" " />
                                         <Run Text="{Binding Writer}" />
                                     </TextBlock>
                                 </StackPanel>
@@ -127,7 +133,7 @@
                     </Grid>
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Content="Download" Style="{DynamicResource DownloadBT}" Command="{Binding DownloadBTClick}" />
+                        <Button Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_DownloadBT, Mode=OneWay}" Style="{DynamicResource DownloadBT}" Command="{Binding DownloadBTClick}" />
                     </StackPanel>
 
                     <Grid Grid.Row="1" Margin="10">

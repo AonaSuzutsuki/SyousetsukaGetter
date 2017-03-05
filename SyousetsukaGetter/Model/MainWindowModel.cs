@@ -159,6 +159,7 @@ namespace SyousetsukaGetter.Model
             string ncode = novelInfo.NCode;
             FileInfo novelFileInfo = new FileInfo(SharedData.SavelNovelDirPath + @"\" + ncode);
             FileInfo novelListFileInfo = new FileInfo(SharedData.SavedNovelListDirPath + @"\" + ncode);
+            FileInfo novelPageFileInfo = new FileInfo(SharedData.SavelNovelPageDirPath + @"\" + ncode);
             if (novelFileInfo.Exists)
             {
                 novelFileInfo.Delete();
@@ -166,6 +167,10 @@ namespace SyousetsukaGetter.Model
             if (novelListFileInfo.Exists)
             {
                 novelListFileInfo.Delete();
+            }
+            if (novelPageFileInfo.Exists)
+            {
+                novelPageFileInfo.Delete();
             }
         }
 
