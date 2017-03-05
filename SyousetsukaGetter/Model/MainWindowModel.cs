@@ -141,7 +141,15 @@ namespace SyousetsukaGetter.Model
                             new KimamaLib.XMLWrapper.AttributeInfo() { Name = "page", Value = (i + 1).ToString() },
                             new KimamaLib.XMLWrapper.AttributeInfo() { Name = "subtitle", Value = titleList[i] },
                     };
-                    xmlWriter.AddElement("novel", attributes, textList[i]);
+                    var text = textList[i].Replace("<ruby>", string.Empty);
+                    text = text.Replace("</ruby>", string.Empty);
+                    text = text.Replace("<rb>", string.Empty);
+                    text = text.Replace("</rb>", string.Empty);
+                    text = text.Replace("<rp>", string.Empty);
+                    text = text.Replace("</rp>", string.Empty);
+                    text = text.Replace("<rt>", string.Empty);
+                    text = text.Replace("</rt>", string.Empty);
+                    xmlWriter.AddElement("novel", attributes, text);
                 }
                 xmlWriter.Write(fs);
             }
@@ -159,6 +167,40 @@ namespace SyousetsukaGetter.Model
             {
                 novelListFileInfo.Delete();
             }
+        }
+
+        public void SavePage(NovelInfo novelInfo, int page)
+        {
+            string ncode = novelInfo.NCode;
+            DirectoryInfo di = new DirectoryInfo(SharedData.SavelNovelPageDirPath);
+            if (!di.Exists) di.Create();
+            FileInfo fi = new FileInfo(di.FullName + @"\" + ncode);
+            using (FileStream fs = new FileStream(fi.FullName, FileMode.Create, FileAccess.Write, FileShare.Write))
+            {
+                var xmlWriter = new KimamaLib.XMLWrapper.Writer();
+                xmlWriter.SetRoot("novels");
+                xmlWriter.AddElement("novel", new KimamaLib.XMLWrapper.AttributeInfo() { Name = "page", Value = page.ToString() });
+                xmlWriter.Write(fs);
+            }
+        }
+        public int GetPage(NovelInfo novelInfo)
+        {
+            int page = 1;
+
+            string ncode = novelInfo.NCode;
+            DirectoryInfo di = new DirectoryInfo(SharedData.SavelNovelPageDirPath);
+            if (!di.Exists) di.Create();
+            FileInfo fi = new FileInfo(di.FullName + @"\" + ncode);
+            if (fi.Exists)
+            {
+                using (FileStream fs = new FileStream(fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    var xmlReader = new KimamaLib.XMLWrapper.Reader(fs);
+                    page = int.Parse(xmlReader.GetAttribute("page", "novels/novel"));
+                }
+            }
+
+            return page;
         }
     }
 }

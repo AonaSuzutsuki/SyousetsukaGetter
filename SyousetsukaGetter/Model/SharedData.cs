@@ -23,5 +23,13 @@ namespace SyousetsukaGetter.Model
                 return KimamaLib.AppInfo.GetAppPath() + @"\Novels\Text";
             }
         }
+
+        public static string SavelNovelPageDirPath
+        {
+            get
+            {
+                return KimamaLib.AppInfo.GetAppPath() + @"\Novels\Page";
+            }
+        }
     }
 }

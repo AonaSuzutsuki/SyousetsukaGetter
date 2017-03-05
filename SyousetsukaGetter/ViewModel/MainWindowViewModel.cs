@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
@@ -154,6 +155,8 @@ namespace SyousetsukaGetter.ViewModel
 
         private List<string> titleList;
         private List<string> textList;
+
+        private Model.NovelInfo currentNodelInfo;
         #endregion
 
         #region EventProperties
@@ -203,40 +206,14 @@ namespace SyousetsukaGetter.ViewModel
         public void NextPageBT_Click()
         {
             int index = ++CurrentPage;
-            string text = textList[index - 1];
-            string title = titleList[index - 1];
-            OriginalText = text;
-            SubTitleText = title;
-
-            if (CurrentPage >= MaxPage)
-            {
-                PreviousBTIsEnabled = true;
-                NextBTIsEnabled = false;
-            }
-            else
-            {
-                PreviousBTIsEnabled = true;
-                NextBTIsEnabled = true;
-            }
+            CurrentPageText = index.ToString();
+            pageChange(index);
         }
         public void PreviousPageBT_Click()
         {
             int index = --CurrentPage;
-            string text = textList[index - 1];
-            string title = titleList[index - 1];
-            OriginalText = text;
-            SubTitleText = title;
-
-            if (CurrentPage <= 1)
-            {
-                PreviousBTIsEnabled = false;
-                NextBTIsEnabled = true;
-            }
-            else
-            {
-                PreviousBTIsEnabled = true;
-                NextBTIsEnabled = true;
-            }
+            CurrentPageText = index.ToString();
+            pageChange(index);
         }
 
         public void DownloadBT_Click()
@@ -250,32 +227,37 @@ namespace SyousetsukaGetter.ViewModel
         {
             if (e.Key == Key.Enter)
             {
-                int index = CurrentPage;
-                if (index > MaxPage || index <= 0) return;
-
-                string text = textList[index - 1];
-                string title = titleList[index - 1];
-                OriginalText = text;
-                SubTitleText = title;
-
-                if (CurrentPage >= MaxPage)
-                {
-                    PreviousBTIsEnabled = true;
-                    NextBTIsEnabled = false;
-                }
-                else if (CurrentPage <= 1)
-                {
-                    PreviousBTIsEnabled = false;
-                    NextBTIsEnabled = true;
-                }
-                else
-                {
-                    PreviousBTIsEnabled = true;
-                    NextBTIsEnabled = true;
-                }
+                pageChange(CurrentPage);
             }
         }
 
+        private void pageChange(int index)
+        {
+            if (index > MaxPage || index <= 0) return;
+
+            model.SavePage(currentNodelInfo, CurrentPage);
+
+            string text = textList[index - 1];
+            string title = titleList[index - 1];
+            OriginalText = text;
+            SubTitleText = title;
+
+            if (CurrentPage >= MaxPage)
+            {
+                PreviousBTIsEnabled = true;
+                NextBTIsEnabled = false;
+            }
+            else if (CurrentPage <= 1)
+            {
+                PreviousBTIsEnabled = false;
+                NextBTIsEnabled = true;
+            }
+            else
+            {
+                PreviousBTIsEnabled = true;
+                NextBTIsEnabled = true;
+            }
+        }
         private void loadList()
         {
             NovelListItem.Clear();
@@ -292,13 +274,18 @@ namespace SyousetsukaGetter.ViewModel
         private void loadNovel(int index)
         {
             var selectedNovel = NovelListItem[index];
+
+            int page = 1;
+            page = model.GetPage(selectedNovel);
+
+            currentNodelInfo = selectedNovel;
             bool isLoaded = model.LoadNovel(selectedNovel);
 
             if (!isLoaded)
             {
                 SubTitleText = "";
                 OriginalText = "ダウンロードボタンよりダウンロードしてください。";
-                CurrentPage = 0;
+                CurrentPageText = (0).ToString();
                 MaxPage = 0;
                 NextBTIsEnabled = false;
                 PreviousBTIsEnabled = false;
@@ -308,20 +295,25 @@ namespace SyousetsukaGetter.ViewModel
             textList = selectedNovel.Texts;
             if (textList.Count > 0 && titleList.Count > 0)
             {
-                SubTitleText = titleList[0];
-                OriginalText = textList[0];
+                SubTitleText = titleList[page - 1];
+                OriginalText = textList[page - 1];
                 MaxPage = textList.Count;
-                CurrentPageText = (1).ToString();
+                CurrentPageText = page.ToString();
             }
 
-            if (textList.Count <= 1 && titleList.Count <= 1)
+            if (CurrentPage >= MaxPage)
+            {
+                PreviousBTIsEnabled = true;
+                NextBTIsEnabled = false;
+            }
+            else if (CurrentPage <= 1)
             {
                 PreviousBTIsEnabled = false;
-                NextBTIsEnabled = false;
+                NextBTIsEnabled = true;
             }
             else
             {
-                PreviousBTIsEnabled = false;
+                PreviousBTIsEnabled = true;
                 NextBTIsEnabled = true;
             }
         }
