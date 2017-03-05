@@ -79,6 +79,7 @@ namespace SyousetsukaGetter.Model
                 vm.SearchNumText = "20";
             }
             int lim = int.Parse(vm.SearchNumText);
+            var orderItems = vm.OrderItems[vm.OrderSelectedIndex].ID;
            
             url.SetGenreItems(genreItemsID);
             url.SetSecondGenreItems(secondGenreItemsID);
@@ -90,6 +91,7 @@ namespace SyousetsukaGetter.Model
             url.SetUserIDText(userID);
             url.SetNCodeText(nCode);
             url.SetLim(lim);
+            url.SetOrder(orderItems);
             return url.JsonUrl;
         }
 
