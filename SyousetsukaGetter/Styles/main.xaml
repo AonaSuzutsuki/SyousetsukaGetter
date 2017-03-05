@@ -1459,6 +1459,22 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="OriginalTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="#000" />
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderColor}" />
+        <Setter Property="FontFamily" Value="Meiryo" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border Name="MyBorder" CornerRadius="0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" BorderThickness="0" BorderBrush="{StaticResource BorderColor}">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{StaticResource CustomScrollViewer}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <!-- PasswordBox - TextBox -->
     <Style x:Key="PasswordStyle" TargetType="TextBox">
