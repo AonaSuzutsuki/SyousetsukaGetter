@@ -74,6 +74,9 @@
     <Compile Include="Elements\Minus.xaml.cs">
       <DependentUpon>Minus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExMessageBox\ExMessageBox.cs" />
+    <Compile Include="ExMessageBox\ExOKMessageBox.xaml.cs" />
+    <Compile Include="ExMessageBox\ExYesNoMessageBox.xaml.cs" />
     <Compile Include="Model\GenreInfo.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\NovelInfo.cs" />
@@ -95,6 +98,14 @@
     <Page Include="Elements\Plus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExMessageBox\ExOKMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ExMessageBox\ExYesNoMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\segd-arrow-symbols-icons [DrawingBrush].xaml">
       <Generator>MSBuild:Compile</Generator>

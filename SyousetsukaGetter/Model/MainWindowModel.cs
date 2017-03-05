@@ -136,5 +136,19 @@ namespace SyousetsukaGetter.Model
                 }
             }
         }
+        public void RemoveNovel(NovelInfo novelInfo)
+        {
+            string ncode = novelInfo.NCode;
+            FileInfo novelFileInfo = new FileInfo(SharedData.SavelNovelDirPath + @"\" + ncode);
+            FileInfo novelListFileInfo = new FileInfo(SharedData.SavedNovelListDirPath + @"\" + ncode);
+            if (novelFileInfo.Exists)
+            {
+                novelFileInfo.Delete();
+            }
+            if (novelListFileInfo.Exists)
+            {
+                novelListFileInfo.Delete();
+            }
+        }
     }
 }

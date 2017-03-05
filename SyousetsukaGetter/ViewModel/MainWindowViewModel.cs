@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SyousetsukaGetter.ExMessageBox;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace SyousetsukaGetter.ViewModel
         private void initialize()
         {
             AddBTClick = new RelayCommand(AddBT_Click);
+            MinusBTClick = new RelayCommand(MinusBT_Click);
             NovelListSelectionChanged = new RelayCommand(NovelList_SelectionChanged);
             NextPageBTClick = new RelayCommand(NextPageBT_Click);
             PreviousPageBTClick = new RelayCommand(PreviousPageBT_Click);
@@ -136,17 +138,37 @@ namespace SyousetsukaGetter.ViewModel
 
         #region EventProperties
         public ICommand AddBTClick { private set; get; }
+        public ICommand MinusBTClick { private set; get; }
         public ICommand NovelListSelectionChanged { private set; get; }
         public ICommand NextPageBTClick { private set; get; }
         public ICommand PreviousPageBTClick { private set; get; }
         public ICommand DownloadBTClick { private set; get; }
         #endregion
 
+        
         public void AddBT_Click()
         {
             var searchWindow = new View.SearchWindow();
             searchWindow.ShowDialog();
             loadList();
+        }
+        public void MinusBT_Click()
+        {
+            int index = NovelListSelectedIndex;
+            if (index < 0) return;
+
+            var novelInfo = NovelListItem[index];
+
+            string alertTitle = "小説の削除";
+            string alertMessage = novelInfo.Title + " を削除します。よろしいですか？";
+            ExMessageBoxBase.DialogResult dr = ExMessageBoxBase.Show(view, alertMessage, alertTitle, ExMessageBoxBase.MessageType.Asterisk, ExMessageBoxBase.ButtonType.YesNo);
+            if (dr == ExMessageBoxBase.DialogResult.No)
+            {
+                return;
+            }
+
+            NovelListItem.RemoveAt(index);
+            model.RemoveNovel(novelInfo);
         }
 
         public void NovelList_SelectionChanged()
