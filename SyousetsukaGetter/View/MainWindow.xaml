@@ -74,9 +74,10 @@
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
-                        <RowDefinition Height="374" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Width="25" Height=" 25" Style="{DynamicResource MinusBT}" Command="{Binding MinusBTClick}" />
                         <Button Width="25" Height=" 25" Style="{DynamicResource PlusBT}" Command="{Binding AddBTClick}" />
                     </StackPanel>
                     <ListBox Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding NovelListItem}" Style="{DynamicResource MainListBox}" SelectedIndex="{Binding NovelListSelectedIndex}">

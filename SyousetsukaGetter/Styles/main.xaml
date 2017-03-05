@@ -1078,7 +1078,6 @@
     </Style>
     
     <!-- Download Button-->
-
     <Style x:Key="DownloadBT" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="#fff" />
@@ -1088,7 +1087,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <StackPanel Orientation="Horizontal" Background="{TemplateBinding Control.Background}">
                         <Grid Width="25" Height="25">
-                            <Ellipse Margin="2.5,2.5,0,0" Stroke="White" StrokeThickness="1" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Ellipse Margin="5,5,0,0" Stroke="White" StrokeThickness="1" Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             <Path StrokeThickness="1" Stroke="White" Data="M 0,10 L 5,15 L 10,10 M 5,0 L 5,15"/>
                         </Grid>
                         <ContentPresenter Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
