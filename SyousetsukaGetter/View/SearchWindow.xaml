@@ -207,12 +207,20 @@
                                                     <Run Text="{Binding Name}" />
                                                 </TextBlock>
                                             </StackPanel>
-                                            <StackPanel>
+                                            <StackPanel Width="150">
                                                 <TextBlock>
                                                     <Run Text="{Binding BigGenre}" />
                                                 </TextBlock>
                                                 <TextBlock>
                                                     <Run Text="{Binding Genre}" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <StackPanel>
+                                                <TextBlock>
+                                                    <Run Text="{Binding GeneralAllNo}" />
+                                                </TextBlock>
+                                                <TextBlock>
+                                                    <Run Text="{Binding Writer}" />
                                                 </TextBlock>
                                             </StackPanel>
                                         </StackPanel>
