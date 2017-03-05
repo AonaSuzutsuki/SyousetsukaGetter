@@ -131,9 +131,11 @@
                     </StackPanel>
 
                     <Grid Grid.Row="1" Margin="10">
-                        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
-                            <TextBlock Text="{Binding OriginalText}" TextWrapping="WrapWithOverflow" Style="{DynamicResource ExTextBlock}" />
-                        </ScrollViewer>
+                        <TextBox Text="{Binding OriginalText}" TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource OriginalTextBox}" />
+                        
+                        <!--<ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                            <TextBlock Text="{Binding OriginalText}" TextWrapping="NoWrap" Style="{DynamicResource ExTextBlock}" />
+                        </ScrollViewer>-->
                     </Grid>
                 </Grid>
 
