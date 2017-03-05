@@ -74,13 +74,12 @@ namespace SyousetsukaGetter.Model
             var writerCheck = vm.WriterIsChecked;
             string userID = vm.UserIDText;
             string nCode = vm.NCodeText;
-
-
-            vm.SearchNumText = "3"; //テスト用
-
+            if (string.IsNullOrEmpty(vm.SearchNumText))
+            {
+                vm.SearchNumText = "20";
+            }
             int lim = int.Parse(vm.SearchNumText);
-            url.SetLim(lim);
-
+           
             url.SetGenreItems(genreItemsID);
             url.SetSecondGenreItems(secondGenreItemsID);
             url.SetSearchWordText(word);
@@ -90,6 +89,7 @@ namespace SyousetsukaGetter.Model
             url.SetWriterIsChecked(writerCheck);
             url.SetUserIDText(userID);
             url.SetNCodeText(nCode);
+            url.SetLim(lim);
             return url.JsonUrl;
         }
 
