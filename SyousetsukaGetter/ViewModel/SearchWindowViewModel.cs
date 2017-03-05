@@ -86,31 +86,87 @@ namespace SyousetsukaGetter.ViewModel
         /// </summary>
         public ObservableCollection<OrderInfo> OrderItems { set; get; }
 
+        private string searchWordText = string.Empty;
         /// <summary>
         /// 検索単語
         /// </summary>
         public string SearchWordText
         {
-            set;
-            get;
-        } = "";
+            set
+            {
+                searchWordText = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return searchWordText;
+            }
+        }
 
+        private bool titleIsChecked = true;
         /// <summary>
         /// タイトルを検索対象にする
         /// </summary>
-        public bool TitleIsChecked { set; get; } = true;
+        public bool TitleIsChecked
+        {
+            set
+            {
+                titleIsChecked = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return titleIsChecked;
+            }
+        }
+        private bool storyIsChecked = true;
         /// <summary>
         /// あらすじを検索対象にする
         /// </summary>
-        public bool StoryIsChecked { set; get; } = true;
+        public bool StoryIsChecked
+        {
+            set
+            {
+                storyIsChecked = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return storyIsChecked;
+            }
+        }
+        public bool keywordIsChecked = true;
         /// <summary>
         /// キーワードを検索対象にする
         /// </summary>
-        public bool KeywordIsChecked { set; get; } = true;
+        public bool KeywordIsChecked
+        {
+            set
+            {
+                keywordIsChecked = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return keywordIsChecked;
+            }
+        }
+        private bool writerIsChecked = true;
         /// <summary>
         /// 作者を検索対象にする
         /// </summary>
-        public bool WriterIsChecked { set; get; } = true;
+        public bool WriterIsChecked
+        {
+            set
+            {
+                writerIsChecked = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return writerIsChecked;
+            }
+        }
         
         private int genreSelectedIndex = 0;
         /// <summary>
@@ -161,25 +217,62 @@ namespace SyousetsukaGetter.ViewModel
             }
         }
 
+        private string userIDText = string.Empty;
         /// <summary>
         /// ユーザーIDの入力文字
         /// </summary>
-        public string UserIDText { set; get; } = "";
+        public string UserIDText
+        {
+            set
+            {
+                userIDText = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return userIDText;
+            }
+        }
+        private string nCodeText = string.Empty;
         /// <summary>
         /// ncodeの入力文字
         /// </summary>
-        public string NCodeText { set; get; } = "";
+        public string NCodeText
+        {
+            set
+            {
+                nCodeText = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return nCodeText;
+            }
+        }
 
+        private string searchNumText = string.Empty;
         /// <summary>
         /// 検索対象数の入力文字
         /// </summary>
-        public string SearchNumText { set; get; }
+        public string SearchNumText
+        {
+            set
+            {
+                searchNumText = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return searchNumText;
+            }
+        }
         #endregion
 
         #region EventProperties
         public ICommand PlusBTClick { private set; get; }
         public ICommand SearchBTClick { private set; get; }
-        public ICommand OKBT_Click { private set; get; }
+        public ICommand ResetBTClick { private set; get; }
+        public ICommand OKBTClick { private set; get; }
         #endregion
 
         public SearchWindowViewModel(Window view) : base(view)
@@ -195,7 +288,8 @@ namespace SyousetsukaGetter.ViewModel
 
             SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
-            OKBT_Click = new RelayCommand(OKBTClick);
+            OKBTClick = new RelayCommand(OKBT_Click);
+            ResetBTClick = new RelayCommand(ResetBT_Click);
         }
 
         public void SearchBT_Click()
@@ -203,7 +297,20 @@ namespace SyousetsukaGetter.ViewModel
             SearchListData.Clear();
             model.Search();
         }
-
+        public void ResetBT_Click()
+        {
+            SearchWordText = string.Empty;
+            UserIDText = string.Empty;
+            NCodeText = string.Empty;
+            SearchNumText = string.Empty;
+            GenreSelectedIndex = 0;
+            OrderSelectedIndex = 0;
+            SecondGenreSelectedIndex = 0;
+            KeywordIsChecked = true;
+            StoryIsChecked = true;
+            TitleIsChecked = true;
+            WriterIsChecked = true;
+        }
         public void PlusBT_Click(int id)
         {
             Console.WriteLine("ID : " + SearchListData[id].ID);
@@ -226,10 +333,8 @@ namespace SyousetsukaGetter.ViewModel
                 model.RemoveSaveNodel(id);
             }
         }
-
-        bool selectionStop = false;
-
-        public void OKBTClick()
+        
+        public void OKBT_Click()
         {
             model.SaveTo();
             view.Close();

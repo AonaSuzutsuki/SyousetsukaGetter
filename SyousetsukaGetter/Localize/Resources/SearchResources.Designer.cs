@@ -22,14 +22,14 @@ namespace SyousetsukaGetter.Localize.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class SearchResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal SearchResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SyousetsukaGetter.Localize.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SyousetsukaGetter.Localize.Resources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SyousetsukaGetter.Localize.Resources.SearchResources", typeof(SearchResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,110 +61,128 @@ namespace SyousetsukaGetter.Localize.Resources {
         }
         
         /// <summary>
-        ///   {0} を削除します。よろしいですか？ に類似しているローカライズされた文字列を検索します。
+        ///   キャンセル に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string DeleteAlert {
+        public static string UI_CancelBT {
             get {
-                return ResourceManager.GetString("DeleteAlert", resourceCulture);
+                return ResourceManager.GetString("UI_CancelBT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   小説の削除 に類似しているローカライズされた文字列を検索します。
+        ///   ジャンル に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string DeleteNovelTitle {
+        public static string UI_GenreLabel {
             get {
-                return ResourceManager.GetString("DeleteNovelTitle", resourceCulture);
+                return ResourceManager.GetString("UI_GenreLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   データがありません。ダウンロードボタンより新規ダウンロードを行ってください。 に類似しているローカライズされた文字列を検索します。
+        ///   キーワード に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string NeedDownloadText {
+        public static string UI_KeywordCheck {
             get {
-                return ResourceManager.GetString("NeedDownloadText", resourceCulture);
+                return ResourceManager.GetString("UI_KeywordCheck", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   ダウンロード に類似しているローカライズされた文字列を検索します。
+        ///   Nコード に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_DownloadBT {
+        public static string UI_NcodeLabel {
             get {
-                return ResourceManager.GetString("UI_DownloadBT", resourceCulture);
+                return ResourceManager.GetString("UI_NcodeLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   終了(_X) に類似しているローカライズされた文字列を検索します。
+        ///   出力順序 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_ExitBT {
+        public static string UI_OutputOrderLabel {
             get {
-                return ResourceManager.GetString("UI_ExitBT", resourceCulture);
+                return ResourceManager.GetString("UI_OutputOrderLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   ファイル(_F) に類似しているローカライズされた文字列を検索します。
+        ///   リセット に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_FileBT {
+        public static string UI_ResetBT {
             get {
-                return ResourceManager.GetString("UI_FileBT", resourceCulture);
+                return ResourceManager.GetString("UI_ResetBT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   ヘルプ(_H) に類似しているローカライズされた文字列を検索します。
+        ///   検索 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_HelpBT {
+        public static string UI_SearchBT {
             get {
-                return ResourceManager.GetString("UI_HelpBT", resourceCulture);
+                return ResourceManager.GetString("UI_SearchBT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   日本語 に類似しているローカライズされた文字列を検索します。
+        ///   検索数（表示数） に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_JapaneseBT {
+        public static string UI_SearchNumLabel {
             get {
-                return ResourceManager.GetString("UI_JapaneseBT", resourceCulture);
+                return ResourceManager.GetString("UI_SearchNumLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   言語 に類似しているローカライズされた文字列を検索します。
+        ///   検索単語 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_LanguageBT {
+        public static string UI_SearchWordLabel {
             get {
-                return ResourceManager.GetString("UI_LanguageBT", resourceCulture);
+                return ResourceManager.GetString("UI_SearchWordLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   ツール(_T) に類似しているローカライズされた文字列を検索します。
+        ///   第二ジャンル に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_ToolBT {
+        public static string UI_SecondGenreLabel {
             get {
-                return ResourceManager.GetString("UI_ToolBT", resourceCulture);
+                return ResourceManager.GetString("UI_SecondGenreLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   バージョン情報(_V) に類似しているローカライズされた文字列を検索します。
+        ///   あらすじ に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_VersionInfoBT {
+        public static string UI_StoryCheck {
             get {
-                return ResourceManager.GetString("UI_VersionInfoBT", resourceCulture);
+                return ResourceManager.GetString("UI_StoryCheck", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   作者 に類似しているローカライズされた文字列を検索します。
+        ///   タイトル に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UI_Writer {
+        public static string UI_TitleCheck {
             get {
-                return ResourceManager.GetString("UI_Writer", resourceCulture);
+                return ResourceManager.GetString("UI_TitleCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ユーザーID に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_UserIDLabel {
+            get {
+                return ResourceManager.GetString("UI_UserIDLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   作者名 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_WriterCheck {
+            get {
+                return ResourceManager.GetString("UI_WriterCheck", resourceCulture);
             }
         }
     }

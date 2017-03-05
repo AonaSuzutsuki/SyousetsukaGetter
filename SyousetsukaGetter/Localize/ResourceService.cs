@@ -19,6 +19,8 @@ namespace LanguageEx
         #endregion
 
         private readonly SyousetsukaGetter.Localize.Resources.Resources _resources = new SyousetsukaGetter.Localize.Resources.Resources();
+        private readonly SyousetsukaGetter.Localize.Resources.SearchResources _searchResources = new SyousetsukaGetter.Localize.Resources.SearchResources();
+
 
         /// <summary>
         /// 多言語化されたリソースを取得します。
@@ -27,7 +29,11 @@ namespace LanguageEx
         {
             get { return this._resources; }
         }
-        
+        public SyousetsukaGetter.Localize.Resources.SearchResources SearchResources
+        {
+            get { return this._searchResources; }
+        }
+
         #region INotifyPropertyChanged members
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,8 +53,9 @@ namespace LanguageEx
         public void ChangeCulture(string name)
         {
             SyousetsukaGetter.Localize.Resources.Resources.Culture = CultureInfo.GetCultureInfo(name);
-           
+
             this.RaisePropertyChanged("Resources");
+            this.RaisePropertyChanged("RearchResources");
         }
 
         public string GetCulture()

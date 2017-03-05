@@ -77,6 +77,16 @@
     <Compile Include="ExMessageBox\ExMessageBox.cs" />
     <Compile Include="ExMessageBox\ExOKMessageBox.xaml.cs" />
     <Compile Include="ExMessageBox\ExYesNoMessageBox.xaml.cs" />
+    <Compile Include="Localize\Resources\SearchResources.en-US.Designer.cs">
+      <DependentUpon>SearchResources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Localize\Resources\SearchResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Model\GenreInfo.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\NovelInfo.cs" />
@@ -169,6 +179,14 @@
     <EmbeddedResource Include="Localize\Resources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localize\Resources\SearchResources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchResources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localize\Resources\SearchResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

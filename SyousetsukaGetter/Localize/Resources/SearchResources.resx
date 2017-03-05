@@ -117,48 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeleteAlert" xml:space="preserve">
-    <value>{0} を削除します。よろしいですか？</value>
-  </data>
-  <data name="DeleteNovelTitle" xml:space="preserve">
-    <value>小説の削除</value>
-  </data>
-  <data name="NeedDownloadText" xml:space="preserve">
-    <value>データがありません。ダウンロードボタンより新規ダウンロードを行ってください。</value>
-  </data>
-  <data name="UI_DownloadBT" xml:space="preserve">
-    <value>ダウンロード</value>
+  <data name="UI_CancelBT" xml:space="preserve">
+    <value>キャンセル</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_ExitBT" xml:space="preserve">
-    <value>終了(_X)</value>
+  <data name="UI_GenreLabel" xml:space="preserve">
+    <value>ジャンル</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_FileBT" xml:space="preserve">
-    <value>ファイル(_F)</value>
+  <data name="UI_KeywordCheck" xml:space="preserve">
+    <value>キーワード</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_HelpBT" xml:space="preserve">
-    <value>ヘルプ(_H)</value>
+  <data name="UI_NcodeLabel" xml:space="preserve">
+    <value>Nコード</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_JapaneseBT" xml:space="preserve">
-    <value>日本語</value>
+  <data name="UI_OutputOrderLabel" xml:space="preserve">
+    <value>出力順序</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_LanguageBT" xml:space="preserve">
-    <value>言語</value>
+  <data name="UI_ResetBT" xml:space="preserve">
+    <value>リセット</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_ToolBT" xml:space="preserve">
-    <value>ツール(_T)</value>
+  <data name="UI_SearchBT" xml:space="preserve">
+    <value>検索</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_VersionInfoBT" xml:space="preserve">
-    <value>バージョン情報(_V)</value>
+  <data name="UI_SearchNumLabel" xml:space="preserve">
+    <value>検索数（表示数）</value>
     <comment>UI</comment>
   </data>
-  <data name="UI_Writer" xml:space="preserve">
-    <value>作者</value>
+  <data name="UI_SearchWordLabel" xml:space="preserve">
+    <value>検索単語</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_SecondGenreLabel" xml:space="preserve">
+    <value>第二ジャンル</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_StoryCheck" xml:space="preserve">
+    <value>あらすじ</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_TitleCheck" xml:space="preserve">
+    <value>タイトル</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_UserIDLabel" xml:space="preserve">
+    <value>ユーザーID</value>
+    <comment>UI</comment>
+  </data>
+  <data name="UI_WriterCheck" xml:space="preserve">
+    <value>作者名</value>
+    <comment>UI</comment>
   </data>
 </root>

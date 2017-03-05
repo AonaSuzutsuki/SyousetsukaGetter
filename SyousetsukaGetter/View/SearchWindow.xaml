@@ -46,7 +46,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Image>
-                <Label Content="SyousetsukaGetter 検索" Style="{DynamicResource ResourceKey=StatTitle}" />
+                <Label Content="NarouReader 検索" Style="{DynamicResource ResourceKey=StatTitle}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5"
                         HorizontalAlignment="Right"
@@ -66,15 +66,15 @@
                     <StackPanel>
 
                         <StackPanel>
-                            <Label Content="検索単語" />
-                            <TextBox Text="{Binding SearchWordText, Mode=OneWayToSource}" />
+                            <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_SearchWordLabel, Mode=OneWay}" />
+                            <TextBox Text="{Binding SearchWordText}" />
                         </StackPanel>
 
                         <StackPanel>
-                            <CheckBox Content="タイトル" IsChecked="{Binding TitleIsChecked}" />
-                            <CheckBox Content="あらすじ" IsChecked="{Binding StoryIsChecked}" />
-                            <CheckBox Content="キーワード" IsChecked="{Binding KeywordIsChecked}" />
-                            <CheckBox Content="作者名" IsChecked="{Binding WriterIsChecked}" />
+                            <CheckBox Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_TitleCheck, Mode=OneWay}" IsChecked="{Binding TitleIsChecked}" />
+                            <CheckBox Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_StoryCheck, Mode=OneWay}" IsChecked="{Binding StoryIsChecked}" />
+                            <CheckBox Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_KeywordCheck, Mode=OneWay}" IsChecked="{Binding KeywordIsChecked}" />
+                            <CheckBox Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_WriterCheck, Mode=OneWay}" IsChecked="{Binding WriterIsChecked}" />
                         </StackPanel>
 
                         <Grid>
@@ -85,7 +85,7 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0">
-                                <Label Content="ジャンル" />
+                                <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_GenreLabel, Mode=OneWay}" />
                                 <ComboBox ItemsSource="{Binding GenreItems}" SelectedIndex="{Binding GenreSelectedIndex}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
@@ -97,7 +97,7 @@
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Grid.Column="2">
-                                <Label Content="第二ジャンル" />
+                                <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_SecondGenreLabel, Mode=OneWay}" />
                                 <ComboBox ItemsSource="{Binding SecondGenreItems}" SelectedIndex="{Binding SecondGenreSelectedIndex}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
@@ -111,24 +111,24 @@
                         </Grid>
 
                         <StackPanel>
-                            <Label Content="ユーザーID" />
-                            <TextBox Text="{Binding UserIDText, Mode=OneWayToSource}" />
+                            <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_UserIDLabel, Mode=OneWay}" />
+                            <TextBox Text="{Binding UserIDText}" />
                         </StackPanel>
 
                         <StackPanel>
-                            <Label Content="Nコード" />
-                            <TextBox Text="{Binding NCodeText, Mode=OneWayToSource}" />
+                            <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_NcodeLabel, Mode=OneWay}" />
+                            <TextBox Text="{Binding NCodeText}" />
                         </StackPanel>
 
                         <Grid>
                             <StackPanel Grid.Column="0">
-                                <Label Content="検索数（表示数）" />
-                                <TextBox Text="{Binding SearchNumText, Mode=OneWayToSource}" />
+                                <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_SearchNumLabel, Mode=OneWay}" />
+                                <TextBox Text="{Binding SearchNumText}" />
                             </StackPanel>
                         </Grid>
 
                         <StackPanel>
-                            <Label Content="出力順序" />
+                            <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_OutputOrderLabel, Mode=OneWay}" />
                             <ComboBox ItemsSource="{Binding OrderItems}" SelectedIndex="{Binding OrderSelectedIndex}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -147,8 +147,8 @@
                             <ColumnDefinition Width="5" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="検索" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding SearchBTClick}" />
-                        <Button Grid.Column="2" Content="リセット" Width="100" Height="25" Style="{DynamicResource FlatButton}" />
+                        <Button Grid.Column="0" Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_SearchBT, Mode=OneWay}" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding SearchBTClick}" />
+                        <Button Grid.Column="2" Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_ResetBT, Mode=OneWay}" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding ResetBTClick}" />
                     </Grid>
                 </Grid>
                 
@@ -244,8 +244,8 @@
                             <ColumnDefinition Width="5" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="OK" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding OKBT_Click}" />
-                        <Button Grid.Column="2" Content="キャンセル" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding MainWindowCloseBTClick}" />
+                        <Button Grid.Column="0" Content="OK" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding OKBTClick}" />
+                        <Button Grid.Column="2" Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_CancelBT, Mode=OneWay}" Width="100" Height="25" Style="{DynamicResource FlatButton}" Command="{Binding MainWindowCloseBTClick}" />
                     </Grid>
                     
                 </Grid>

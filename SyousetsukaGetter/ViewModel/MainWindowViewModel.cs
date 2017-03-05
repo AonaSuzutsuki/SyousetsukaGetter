@@ -1,4 +1,5 @@
 ﻿using SyousetsukaGetter.ExMessageBox;
+using SyousetsukaGetter.Localize.Resources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -184,8 +185,8 @@ namespace SyousetsukaGetter.ViewModel
 
             var novelInfo = NovelListItem[index];
 
-            string alertTitle = "小説の削除";
-            string alertMessage = novelInfo.Title + " を削除します。よろしいですか？";
+            string alertTitle = Resources.DeleteNovelTitle;
+            string alertMessage = string.Format(Resources.DeleteAlert, novelInfo.Title);
             ExMessageBoxBase.DialogResult dr = ExMessageBoxBase.Show(view, alertMessage, alertTitle, ExMessageBoxBase.MessageType.Asterisk, ExMessageBoxBase.ButtonType.YesNo);
             if (dr == ExMessageBoxBase.DialogResult.No)
             {
@@ -241,8 +242,13 @@ namespace SyousetsukaGetter.ViewModel
             string title = titleList[index - 1];
             OriginalText = text;
             SubTitleText = title;
-
-            if (CurrentPage >= MaxPage)
+            
+            if (MaxPage <= 1)
+            {
+                PreviousBTIsEnabled = false;
+                NextBTIsEnabled = false;
+            }
+            else if (CurrentPage >= MaxPage)
             {
                 PreviousBTIsEnabled = true;
                 NextBTIsEnabled = false;
@@ -284,7 +290,7 @@ namespace SyousetsukaGetter.ViewModel
             if (!isLoaded)
             {
                 SubTitleText = "";
-                OriginalText = "ダウンロードボタンよりダウンロードしてください。";
+                OriginalText = Resources.NeedDownloadText;
                 CurrentPageText = (0).ToString();
                 MaxPage = 0;
                 NextBTIsEnabled = false;
@@ -301,7 +307,12 @@ namespace SyousetsukaGetter.ViewModel
                 CurrentPageText = page.ToString();
             }
 
-            if (CurrentPage >= MaxPage)
+            if (MaxPage <= 1)
+            {
+                PreviousBTIsEnabled = false;
+                NextBTIsEnabled = false;
+            }
+            else if (CurrentPage >= MaxPage)
             {
                 PreviousBTIsEnabled = true;
                 NextBTIsEnabled = false;
