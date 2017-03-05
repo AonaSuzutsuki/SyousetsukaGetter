@@ -57,6 +57,8 @@ namespace SyousetsukaGetter.Model
                     Name = item.v.Title,
                     BigGenre = item.v.BigGenre,
                     Genre = item.v.Genre,
+                    GeneralAllNo = item.v.GeneralAllNo.ToString() + " ページ",
+                    Writer = item.v.Writer
                 };
                 vm.SearchListData.Add(searchListDataInfo);
             }

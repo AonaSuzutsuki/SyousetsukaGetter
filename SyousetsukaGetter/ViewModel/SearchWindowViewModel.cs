@@ -22,6 +22,8 @@ namespace SyousetsukaGetter.ViewModel
             public string Name { set; get; }
             public string BigGenre { set; get; }
             public string Genre { set; get; }
+            public string GeneralAllNo { set; get; }
+            public string Writer { set; get; }
 
             public bool IsPlus { set; get; } = false;
 
