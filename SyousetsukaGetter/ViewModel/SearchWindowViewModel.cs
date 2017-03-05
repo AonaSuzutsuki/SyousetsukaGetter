@@ -294,7 +294,7 @@ namespace SyousetsukaGetter.ViewModel
 
         public void SearchBT_Click()
         {
-            SearchListData = new ObservableCollection<SearchListDataInfo>();
+            SearchListData.Clear();
             model.Search();
         }
         public void ResetBT_Click()
