@@ -31,6 +31,7 @@ namespace SyousetsukaGetter.ViewModel
             NextPageBTClick = new RelayCommand(NextPageBT_Click);
             PreviousPageBTClick = new RelayCommand(PreviousPageBT_Click);
             DownloadBTClick = new RelayCommand(DownloadBT_Click);
+            CurrentPageKeyDown = new RelayCommand<KeyEventArgs>(CurrentPage_KeyDown);
         }
 
         #region Properties
@@ -91,13 +92,32 @@ namespace SyousetsukaGetter.ViewModel
             }
         }
 
+        string currentPageText = string.Empty;
+        public string CurrentPageText
+        {
+            set
+            {
+
+                currentPageText = value;
+                
+                int page = 1;
+                int.TryParse(value, out page);
+                currentPage = page;
+
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return currentPageText;
+            }
+        }
+
         private int currentPage = 1;
         public int CurrentPage
         {
             set
             {
                 currentPage = value;
-                OnPropertyChanged(this);
             }
             get
             {
@@ -143,9 +163,11 @@ namespace SyousetsukaGetter.ViewModel
         public ICommand NextPageBTClick { private set; get; }
         public ICommand PreviousPageBTClick { private set; get; }
         public ICommand DownloadBTClick { private set; get; }
+
+        public ICommand CurrentPageKeyDown { private set; get; }
         #endregion
 
-        
+
         public void AddBT_Click()
         {
             var searchWindow = new View.SearchWindow();
@@ -220,7 +242,38 @@ namespace SyousetsukaGetter.ViewModel
         public void DownloadBT_Click()
         {
             if (NovelListSelectedIndex < 0) return;
-            loadNovel(NovelListSelectedIndex, true);
+            model.DownloadNovel(NovelListItem[NovelListSelectedIndex]);
+            loadNovel(NovelListSelectedIndex);
+        }
+
+        public void CurrentPage_KeyDown(KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                int index = CurrentPage;
+                if (index > MaxPage || index <= 0) return;
+
+                string text = textList[index - 1];
+                string title = titleList[index - 1];
+                OriginalText = text;
+                SubTitleText = title;
+
+                if (CurrentPage >= MaxPage)
+                {
+                    PreviousBTIsEnabled = true;
+                    NextBTIsEnabled = false;
+                }
+                else if (CurrentPage <= 1)
+                {
+                    PreviousBTIsEnabled = false;
+                    NextBTIsEnabled = true;
+                }
+                else
+                {
+                    PreviousBTIsEnabled = true;
+                    NextBTIsEnabled = true;
+                }
+            }
         }
 
         private void loadList()
@@ -236,10 +289,21 @@ namespace SyousetsukaGetter.ViewModel
             NovelListSelectedIndex = 0;
             loadNovel(0);
         }
-        private void loadNovel(int index, bool isForceDownload = false)
+        private void loadNovel(int index)
         {
             var selectedNovel = NovelListItem[index];
-            model.LoadNovel(selectedNovel, isForceDownload);
+            bool isLoaded = model.LoadNovel(selectedNovel);
+
+            if (!isLoaded)
+            {
+                SubTitleText = "";
+                OriginalText = "ダウンロードボタンよりダウンロードしてください。";
+                CurrentPage = 0;
+                MaxPage = 0;
+                NextBTIsEnabled = false;
+                PreviousBTIsEnabled = false;
+            }
+
             titleList = selectedNovel.Titles;
             textList = selectedNovel.Texts;
             if (textList.Count > 0 && titleList.Count > 0)
@@ -247,7 +311,7 @@ namespace SyousetsukaGetter.ViewModel
                 SubTitleText = titleList[0];
                 OriginalText = textList[0];
                 MaxPage = textList.Count;
-                CurrentPage = 1;
+                CurrentPageText = (1).ToString();
             }
 
             if (textList.Count <= 1 && titleList.Count <= 1)
