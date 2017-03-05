@@ -80,6 +80,7 @@
     <Compile Include="Model\GenreInfo.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\NovelInfo.cs" />
+    <Compile Include="Model\OrderInfo.cs" />
     <Compile Include="Model\SearchWindowModel.cs" />
     <Compile Include="Model\SharedData.cs" />
     <Compile Include="ViewModel\ListClassBase.cs" />

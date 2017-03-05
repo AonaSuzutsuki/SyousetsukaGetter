@@ -79,6 +79,10 @@ namespace SyousetsukaGetter.ViewModel
         /// 第二ジャンル一覧
         /// </summary>
         public ObservableCollection<GenreInfo> SecondGenreItems { set; get; }
+        /// <summary>
+        /// 検索順序
+        /// </summary>
+        public ObservableCollection<OrderInfo> OrderItems { set; get; }
 
         /// <summary>
         /// 検索単語
@@ -105,11 +109,11 @@ namespace SyousetsukaGetter.ViewModel
         /// 作者を検索対象にする
         /// </summary>
         public bool WriterIsChecked { set; get; } = true;
-
+        
+        private int genreSelectedIndex = 0;
         /// <summary>
         /// ジャンルリストで指定されたインデックス
         /// </summary>
-        private int genreSelectedIndex = 0;
         public int GenreSelectedIndex
         {
             set
@@ -122,10 +126,10 @@ namespace SyousetsukaGetter.ViewModel
                 return genreSelectedIndex;
             }
         }
+        private int secondGenreSelectedIndex = 0;
         /// <summary>
         /// 第二ジャンルリストで指定されたインデックス
         /// </summary>
-        private int secondGenreSelectedIndex = 0;
         public int SecondGenreSelectedIndex
         {
             set
@@ -136,6 +140,22 @@ namespace SyousetsukaGetter.ViewModel
             get
             {
                 return secondGenreSelectedIndex;
+            }
+        }
+        private int orderSelectedIndex = 0;
+        /// <summary>
+        /// 検索順序で指定されたインデックス
+        /// </summary>
+        public int OrderSelectedIndex
+        {
+            set
+            {
+                orderSelectedIndex = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return orderSelectedIndex;
             }
         }
 
@@ -168,6 +188,8 @@ namespace SyousetsukaGetter.ViewModel
             GenreItems = new ObservableCollection<GenreInfo>(GenreInfos.BigGenres);
 
             SecondGenreItems = new ObservableCollection<GenreInfo>(GenreInfos.Genres);
+
+            OrderItems = new ObservableCollection<OrderInfo>(OrderInfos.Orders);
 
             SearchBTClick = new RelayCommand(SearchBT_Click);
             PlusBTClick = new RelayCommand<int>(PlusBT_Click);
