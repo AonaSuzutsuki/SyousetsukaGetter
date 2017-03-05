@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:SyousetsukaGetter.View"
         mc:Ignorable="d"
-        Title="SearchWindow" Height="500" Width="860"
+        Title="SearchWindow" Height="550" Width="860"
         ShowInTaskbar="True"
         Topmost="False"
         WindowStartupLocation="CenterScreen"
@@ -126,6 +126,19 @@
                                 <TextBox Text="{Binding SearchNumText, Mode=OneWayToSource}" />
                             </StackPanel>
                         </Grid>
+
+                        <StackPanel>
+                            <Label Content="出力順序" />
+                            <ComboBox ItemsSource="{Binding OrderItems}" SelectedIndex="{Binding OrderSelectedIndex}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding Name}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
 
                     </StackPanel>
                     <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right">
