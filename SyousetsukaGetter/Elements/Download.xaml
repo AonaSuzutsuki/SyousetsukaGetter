@@ -10,11 +10,10 @@
     <Grid>
         <StackPanel Orientation="Horizontal" Background="{TemplateBinding Control.Background}">
             <Grid Width="25" Height="25">
-                <Ellipse Margin="5,5,0,0" Stroke="White" StrokeThickness="1" Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Path StrokeThickness="1" Stroke="White" Data="M 0,10 L 5,15 L 10,10 M 5,0 L 5,15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Ellipse Margin="0" Stroke="White" StrokeThickness="1" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Path StrokeThickness="1" Stroke="White" Data="M 0,6 L 4,10 L 8,6 M 4,0 L 4,10" Margin="0,0,1,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <ContentPresenter Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-
     </Grid>
 </UserControl>

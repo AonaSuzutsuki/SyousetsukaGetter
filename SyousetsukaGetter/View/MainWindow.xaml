@@ -92,6 +92,10 @@
                                     <TextBlock TextWrapping="Wrap">
                                         <Run Text="{Binding Title}" />
                                     </TextBlock>
+                                    <TextBlock TextWrapping="Wrap" Foreground="#bbb">
+                                        <Run Text="作者 " />
+                                        <Run Text="{Binding Writer}" />
+                                    </TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -107,7 +111,13 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Button Content="←" IsEnabled="{Binding PreviousBTIsEnabled}" Width="30" Height="25" Margin="5,0,0,0" Style="{DynamicResource FlatButton}" Command="{Binding PreviousPageBTClick}" />
                         <Button Content="→" IsEnabled="{Binding NextBTIsEnabled}" Width="30" Height="25" Margin="5,0,0,0" Style="{DynamicResource FlatButton}" Command="{Binding NextPageBTClick}" />
-                        <Label Content="{Binding CurrentPage}" />
+                        <TextBox Text="{Binding CurrentPageText, UpdateSourceTrigger=PropertyChanged}" Width="30" Height="25" Margin="5,0,0,0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="KeyDown">
+                                    <local:InvokeDelegateCommandAction Command="{Binding CurrentPageKeyDown}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InvokeParameter}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
                         <Label Content="/" />
                         <Label Content="{Binding MaxPage}" />
                     </StackPanel>
