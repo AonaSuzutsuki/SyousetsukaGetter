@@ -195,6 +195,13 @@ namespace SyousetsukaGetter.ViewModel
 
             NovelListItem.RemoveAt(index);
             model.RemoveNovel(novelInfo);
+
+            SubTitleText = "";
+            OriginalText = "";
+            CurrentPageText = "";
+            MaxPage = 0;
+            NextBTIsEnabled = false;
+            PreviousBTIsEnabled = false;
         }
 
         public void NovelList_SelectionChanged()
@@ -266,7 +273,7 @@ namespace SyousetsukaGetter.ViewModel
         }
         private void loadList()
         {
-            NovelListItem.Clear();
+            NovelListItem = new ObservableCollection<Model.NovelInfo>();
             var novelList = model.NovelListLoad();
             if (novelList == null) return;
 
