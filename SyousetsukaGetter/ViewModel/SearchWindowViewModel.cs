@@ -72,7 +72,19 @@ namespace SyousetsukaGetter.ViewModel
         Model.SearchWindowModel model;
 
         #region Properties
-        public ObservableCollection<SearchListDataInfo> SearchListData { set; get; } = new ObservableCollection<SearchListDataInfo>();
+        private ObservableCollection<SearchListDataInfo> searchListData = new ObservableCollection<SearchListDataInfo>();
+        public ObservableCollection<SearchListDataInfo> SearchListData
+        {
+            set
+            {
+                searchListData = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return searchListData;
+            }
+        }
         /// <summary>
         /// ジャンル一覧
         /// </summary>
@@ -294,7 +306,7 @@ namespace SyousetsukaGetter.ViewModel
 
         public void SearchBT_Click()
         {
-            SearchListData.Clear();
+            SearchListData = new ObservableCollection<SearchListDataInfo>();
             model.Search();
         }
         public void ResetBT_Click()

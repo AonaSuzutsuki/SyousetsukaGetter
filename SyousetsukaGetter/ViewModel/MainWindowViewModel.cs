@@ -37,7 +37,19 @@ namespace SyousetsukaGetter.ViewModel
         }
 
         #region Properties
-        public ObservableCollection<Model.NovelInfo> NovelListItem { set; get; } = new ObservableCollection<Model.NovelInfo>();
+        private ObservableCollection<Model.NovelInfo> novelListItem = new ObservableCollection<Model.NovelInfo>();
+        public ObservableCollection<Model.NovelInfo> NovelListItem
+        {
+            set
+            {
+                novelListItem = value;
+                OnPropertyChanged(this);
+            }
+            get
+            {
+                return novelListItem;
+            }
+        }
 
         public string originalText = string.Empty;
         public string OriginalText
