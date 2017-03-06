@@ -13,8 +13,6 @@ namespace SyousetsukaGetter.Model
         public MainWindowModel(ViewModel.MainWindowViewModel vm)
         {
             this.vm = vm;
-
-            vm.OriginalText = "test";
         }
 
         IList<NovelInfo> novels = new List<NovelInfo>();
