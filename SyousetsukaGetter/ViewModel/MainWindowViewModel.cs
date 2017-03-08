@@ -19,13 +19,13 @@ namespace SyousetsukaGetter.ViewModel
         Model.MainWindowModel model;
         public MainWindowViewModel(Window view) : base(view)
         {
-            initialize();
+            Initialize();
 
             model = new Model.MainWindowModel(this);
-            loadList();
+            LoadList();
         }
 
-        private void initialize()
+        private void Initialize()
         {
             AddBTClick = new RelayCommand(AddBT_Click);
             MinusBTClick = new RelayCommand(MinusBT_Click);
@@ -34,6 +34,7 @@ namespace SyousetsukaGetter.ViewModel
             PreviousPageBTClick = new RelayCommand(PreviousPageBT_Click);
             DownloadBTClick = new RelayCommand(DownloadBT_Click);
             CurrentPageKeyDown = new RelayCommand<KeyEventArgs>(CurrentPage_KeyDown);
+            MainWindowVersionInfoBTClick = new RelayCommand(MainWindowVersionInfoBT_Click);
         }
 
         #region Properties
@@ -113,9 +114,8 @@ namespace SyousetsukaGetter.ViewModel
             {
 
                 currentPageText = value;
-                
-                int page = 1;
-                int.TryParse(value, out page);
+
+                int.TryParse(value, out int page);
                 currentPage = page;
 
                 OnPropertyChanged(this);
@@ -173,6 +173,8 @@ namespace SyousetsukaGetter.ViewModel
         #endregion
 
         #region EventProperties
+        public ICommand MainWindowVersionInfoBTClick { private set; get; }
+
         public ICommand AddBTClick { private set; get; }
         public ICommand MinusBTClick { private set; get; }
         public ICommand NovelListSelectionChanged { private set; get; }
@@ -184,13 +186,24 @@ namespace SyousetsukaGetter.ViewModel
         #endregion
 
 
-        public void AddBT_Click()
+        #region EventMethods
+        private void MainWindowVersionInfoBT_Click()
         {
+            view.IsEnabled = false;
+            View.VersionInfo vInfo = new View.VersionInfo();
+            vInfo.ShowDialog();
+            view.IsEnabled = true;
+        }
+
+        private void AddBT_Click()
+        {
+            view.IsEnabled = false;
             var searchWindow = new View.SearchWindow();
             searchWindow.ShowDialog();
-            loadList();
+            view.IsEnabled = true;
+            LoadList();
         }
-        public void MinusBT_Click()
+        private void MinusBT_Click()
         {
             int index = NovelListSelectedIndex;
             if (index < 0) return;
@@ -216,42 +229,43 @@ namespace SyousetsukaGetter.ViewModel
             PreviousBTIsEnabled = false;
         }
 
-        public void NovelList_SelectionChanged()
+        private void NovelList_SelectionChanged()
         {
             if (NovelListSelectedIndex < 0) return;
             
-            loadNovel(NovelListSelectedIndex);
+            LoadNovel(NovelListSelectedIndex);
         }
 
-        public void NextPageBT_Click()
+        private void NextPageBT_Click()
         {
             int index = ++CurrentPage;
             CurrentPageText = index.ToString();
-            pageChange(index);
+            PageChange(index);
         }
-        public void PreviousPageBT_Click()
+        private void PreviousPageBT_Click()
         {
             int index = --CurrentPage;
             CurrentPageText = index.ToString();
-            pageChange(index);
+            PageChange(index);
         }
 
-        public void DownloadBT_Click()
+        private void DownloadBT_Click()
         {
             if (NovelListSelectedIndex < 0) return;
             model.DownloadNovel(NovelListItem[NovelListSelectedIndex]);
-            loadNovel(NovelListSelectedIndex);
+            LoadNovel(NovelListSelectedIndex);
         }
 
-        public void CurrentPage_KeyDown(KeyEventArgs e)
+        private void CurrentPage_KeyDown(KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                pageChange(CurrentPage);
+                PageChange(CurrentPage);
             }
         }
+        #endregion
 
-        private void pageChange(int index)
+        private void PageChange(int index)
         {
             if (index > MaxPage || index <= 0) return;
 
@@ -283,7 +297,7 @@ namespace SyousetsukaGetter.ViewModel
                 NextBTIsEnabled = true;
             }
         }
-        private void loadList()
+        private void LoadList()
         {
             NovelListItem = new ObservableCollection<Model.NovelInfo>();
             var novelList = model.NovelListLoad();
@@ -294,9 +308,9 @@ namespace SyousetsukaGetter.ViewModel
                 NovelListItem.Add(novelInfo);
             }
             NovelListSelectedIndex = 0;
-            loadNovel(0);
+            LoadNovel(0);
         }
-        private void loadNovel(int index)
+        private void LoadNovel(int index)
         {
             var selectedNovel = NovelListItem[index];
 

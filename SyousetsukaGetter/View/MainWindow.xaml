@@ -65,7 +65,7 @@
                         </MenuItem>
                     </MenuItem>
                     <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_HelpBT, Mode=OneWay}">
-                        <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_VersionInfoBT, Mode=OneWay}" Command="{Binding MainWindowCloseBTClick}" />
+                        <MenuItem Header="{Binding Source={x:Static lang:ResourceService.Current}, Path=Resources.UI_VersionInfoBT, Mode=OneWay}" Command="{Binding MainWindowVersionInfoBTClick}" />
                     </MenuItem>
                 </Menu>
             </StackPanel>

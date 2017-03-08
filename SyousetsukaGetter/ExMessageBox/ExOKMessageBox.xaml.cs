@@ -67,7 +67,7 @@ namespace SyousetsukaGetter.ExMessageBox
             _vm = new ViewModel();
             DataContext = _vm;
 
-            wIO = new ExWindow.wInOut(this, AroundBorder);
+            wIO = new ExWindow.WindowInOut(this, AroundBorder);
 
             w = _w;
             text = _text;
@@ -84,7 +84,7 @@ namespace SyousetsukaGetter.ExMessageBox
 
 
         Window w;
-        ExWindow.wInOut wIO;
+        ExWindow.WindowInOut wIO;
         string text = string.Empty;
         string title = string.Empty;
         ExMessageBoxBase.MessageType mType;
