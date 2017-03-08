@@ -62,7 +62,7 @@ namespace KimamaLib.XMLWrapper
             for (int i = 0; i < personList.Count; i++)
             {
                 string value = (personList[i] as XmlElement).InnerText;
-                value = this.removeSpace(value, true);
+                value = this.RemoveSpace(value, true);
                 Values.Add(value);
             }
 
@@ -76,12 +76,12 @@ namespace KimamaLib.XMLWrapper
             if (personList.Count > 0)
             {
                 value = (personList[0] as XmlElement).InnerText;
-                value = this.removeSpace(value, true);
+                value = this.RemoveSpace(value, true);
             }
             return value;
         }
 
-        private string removeSpace(string text, bool isAddLine = false)
+        private string RemoveSpace(string text, bool isAddLine = false)
         {
             var sb = new StringBuilder();
 

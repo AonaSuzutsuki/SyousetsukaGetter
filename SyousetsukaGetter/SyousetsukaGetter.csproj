@@ -95,8 +95,12 @@
     <Compile Include="Model\SharedData.cs" />
     <Compile Include="ViewModel\ListClassBase.cs" />
     <Compile Include="ViewModel\SearchWindowViewModel.cs" />
+    <Compile Include="ViewModel\VersionInfoViewModel.cs" />
     <Compile Include="View\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VersionInfo.xaml.cs">
+      <DependentUpon>VersionInfo.xaml</DependentUpon>
     </Compile>
     <Page Include="Elements\Download.xaml">
       <SubType>Designer</SubType>
@@ -154,6 +158,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\SearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VersionInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

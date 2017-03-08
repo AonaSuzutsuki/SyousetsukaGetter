@@ -67,7 +67,7 @@
 
                         <StackPanel>
                             <Label Content="{Binding Source={x:Static lang:ResourceService.Current}, Path=SearchResources.UI_SearchWordLabel, Mode=OneWay}" />
-                            <TextBox Text="{Binding SearchWordText}" />
+                            <TextBox Text="{Binding SearchWordText}" ContextMenu="{StaticResource CopyOnly}" />
                         </StackPanel>
 
                         <StackPanel>

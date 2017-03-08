@@ -6,11 +6,11 @@ using System.Windows.Media;
 
 namespace ExWindow
 {
-    public class wInOut
+    public class WindowInOut
     {
         Border AroundBorder;
         Window w;
-        public wInOut(Window _w, Border _brd)
+        public WindowInOut(Window _w, Border _brd)
         {
             w = _w;
             AroundBorder = _brd;

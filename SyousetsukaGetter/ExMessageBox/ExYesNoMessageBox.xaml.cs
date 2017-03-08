@@ -50,7 +50,7 @@ namespace SyousetsukaGetter.ExMessageBox
 
 
         ViewModel vm;
-        ExWindow.wInOut wIO;
+        ExWindow.WindowInOut wIO;
 
         Window w;
         string text = string.Empty;
@@ -63,7 +63,7 @@ namespace SyousetsukaGetter.ExMessageBox
             vm = new ViewModel();
             DataContext = vm;
 
-            wIO = new ExWindow.wInOut(this, AroundBorder);
+            wIO = new ExWindow.WindowInOut(this, AroundBorder);
 
             w = _w;
             text = _text;
