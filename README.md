@@ -1,5 +1,5 @@
 # NarouReader
-
+maybe not manage forever.
 
 # Compile
 Visual Studio 2015/2017
